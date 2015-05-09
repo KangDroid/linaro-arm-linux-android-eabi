@@ -4,8 +4,8 @@
 ;;; Don't parse this file wihout knowing GCC gengtype internals.
 ;;; This file should be parsed by the same gengtype which wrote it.
 
-(!version  "6.0.0 20150508 (experimental)")
-(!srcdir  "/home/kangdroid/linaro/objdir/../build/../gcc/gcc-linaro-4.9-android-picked/gcc")
+(!version  "6.0.0 20150509 (experimental)")
+(!srcdir  "/home/kangdroid/linaro/objdir/../build/../gcc/gcc-master/gcc")
 (!languages 10 ada c cp fortran go java jit lto objc objcp)
 (!fileslist 202
  (!srcfile 1023  "../libcpp/include/line-map.h")
@@ -322,11 +322,11 @@
               (!srcfileloc  "tree-core.h" 809)
               nil )
              (!pair  "u"
-              (!type union 12 nil  gc_unused "anonymous:/home/kangdroid/linaro/objdir/../build/../gcc/gcc-linaro-4.9-android-picked/gcc/tree-core.h:811"
+              (!type union 12 nil  gc_unused "anonymous:/home/kangdroid/linaro/objdir/../build/../gcc/gcc-master/gcc/tree-core.h:811"
                (!srcfileloc  "tree-core.h" 878)
                (!fields 6 
                 (!pair  "bits"
-                 (!type struct 13 nil  gc_unused "anonymous:/home/kangdroid/linaro/objdir/../build/../gcc/gcc-linaro-4.9-android-picked/gcc/tree-core.h:814"
+                 (!type struct 13 nil  gc_unused "anonymous:/home/kangdroid/linaro/objdir/../build/../gcc/gcc-master/gcc/tree-core.h:814"
                   (!srcfileloc  "tree-core.h" 837)
                   (!fields 16 
                    (!pair  "lang_flag_0"
@@ -398,7 +398,7 @@
                  (!srcfileloc  "tree-core.h" 837)
                  nil )
                 (!pair  "int_length"
-                 (!type struct 14 nil  gc_unused "anonymous:/home/kangdroid/linaro/objdir/../build/../gcc/gcc-linaro-4.9-android-picked/gcc/tree-core.h:844"
+                 (!type struct 14 nil  gc_unused "anonymous:/home/kangdroid/linaro/objdir/../build/../gcc/gcc-master/gcc/tree-core.h:844"
                   (!srcfileloc  "tree-core.h" 858)
                   (!fields 3 
                    (!pair  "unextended"
@@ -438,7 +438,7 @@
                  (!srcfileloc  "tree-core.h" 867)
                  nil )
                 (!pair  "dependence_info"
-                 (!type struct 18 nil  gc_unused "anonymous:/home/kangdroid/linaro/objdir/../build/../gcc/gcc-linaro-4.9-android-picked/gcc/tree-core.h:874"
+                 (!type struct 18 nil  gc_unused "anonymous:/home/kangdroid/linaro/objdir/../build/../gcc/gcc-master/gcc/tree-core.h:874"
                   (!srcfileloc  "tree-core.h" 877)
                   (!fields 2 
                    (!pair  "clique"
@@ -1436,23 +1436,23 @@
                                                    nil )
                                                   (!pair  "deferred_access_check"
                                                    (!type struct 75 nil  gc_used "deferred_access_check"
-                                                    (!srcfileloc  "cp/cp-tree.h" 5854)
+                                                    (!srcfileloc  "cp/cp-tree.h" 5855)
                                                     (!fields 4 
                                                      (!pair  "binfo"
                                                       (!type already_seen 5)
-                                                      (!srcfileloc  "cp/cp-tree.h" 5847)
+                                                      (!srcfileloc  "cp/cp-tree.h" 5848)
                                                       nil )
                                                      (!pair  "decl"
                                                       (!type already_seen 5)
-                                                      (!srcfileloc  "cp/cp-tree.h" 5849)
+                                                      (!srcfileloc  "cp/cp-tree.h" 5850)
                                                       nil )
                                                      (!pair  "diag_decl"
                                                       (!type already_seen 5)
-                                                      (!srcfileloc  "cp/cp-tree.h" 5851)
+                                                      (!srcfileloc  "cp/cp-tree.h" 5852)
                                                       nil )
                                                      (!pair  "loc"
                                                       (!type already_seen 9)
-                                                      (!srcfileloc  "cp/cp-tree.h" 5853)
+                                                      (!srcfileloc  "cp/cp-tree.h" 5854)
                                                       nil )
                                                     )
                                                     nil 516 nil nil )
@@ -2463,7 +2463,7 @@
                   (!srcfileloc  "rtl.h" 367)
                   nil )
                  (!pair  "u2"
-                  (!type union 138 nil  gc_unused "anonymous:/home/kangdroid/linaro/objdir/../build/../gcc/gcc-linaro-4.9-android-picked/gcc/rtl.h:369"
+                  (!type union 138 nil  gc_unused "anonymous:/home/kangdroid/linaro/objdir/../build/../gcc/gcc-master/gcc/rtl.h:369"
                    (!srcfileloc  "rtl.h" 390)
                    (!fields 5 
                     (!pair  "original_regno"
@@ -6528,7 +6528,7 @@
                                )
                               )
                               (!pair  "x"
-                               (!type struct 322 nil  gc_used "anonymous:/home/kangdroid/linaro/objdir/../build/../gcc/gcc-linaro-4.9-android-picked/gcc/basic-block.h:140"
+                               (!type struct 322 nil  gc_used "anonymous:/home/kangdroid/linaro/objdir/../build/../gcc/gcc-master/gcc/basic-block.h:140"
                                 (!srcfileloc  "basic-block.h" 143)
                                 (!fields 2 
                                  (!pair  "head_"
@@ -8887,7 +8887,7 @@
                               (!srcfileloc  "dwarf2out.h" 57)
                               nil )
                              (!pair  "dw_cfi_oprnd1"
-                              (!type union 452 nil  gc_used "anonymous:/home/kangdroid/linaro/objdir/../build/../gcc/gcc-linaro-4.9-android-picked/gcc/dwarf2out.h:49"
+                              (!type union 452 nil  gc_used "anonymous:/home/kangdroid/linaro/objdir/../build/../gcc/gcc-master/gcc/dwarf2out.h:49"
                                (!srcfileloc  "dwarf2out.h" 54)
                                (!fields 4 
                                 (!pair  "dw_cfi_reg_num"
@@ -11210,7 +11210,7 @@
                  )
                 )
                 (!pair  "loc"
-                 (!type union 555 nil  gc_unused "anonymous:/home/kangdroid/linaro/objdir/../build/../gcc/gcc-linaro-4.9-android-picked/gcc/tree-core.h:1262"
+                 (!type union 555 nil  gc_unused "anonymous:/home/kangdroid/linaro/objdir/../build/../gcc/gcc-master/gcc/tree-core.h:1262"
                   (!srcfileloc  "tree-core.h" 1262)
                   (!fields 2 
                    (!pair  "stmt"
@@ -12846,35 +12846,35 @@
                           (!type already_seen 623)
                          )
                          gc_used "cpp_hashnode"
-                         (!srcfileloc  "../libcpp/include/cpplib.h" 732)
+                         (!srcfileloc  "../libcpp/include/cpplib.h" 735)
                          (!fields 7 
                           (!pair  "ident"
                            (!type already_seen 36)
-                           (!srcfileloc  "../libcpp/include/cpplib.h" 722)
+                           (!srcfileloc  "../libcpp/include/cpplib.h" 725)
                            nil )
                           (!pair  "is_directive"
                            (!type already_seen 9)
-                           (!srcfileloc  "../libcpp/include/cpplib.h" 723)
+                           (!srcfileloc  "../libcpp/include/cpplib.h" 726)
                            nil )
                           (!pair  "directive_index"
                            (!type already_seen 9)
-                           (!srcfileloc  "../libcpp/include/cpplib.h" 724)
+                           (!srcfileloc  "../libcpp/include/cpplib.h" 727)
                            nil )
                           (!pair  "rid_code"
                            (!type already_seen 15)
-                           (!srcfileloc  "../libcpp/include/cpplib.h" 727)
+                           (!srcfileloc  "../libcpp/include/cpplib.h" 730)
                            nil )
                           (!pair  "type"
                            (!type already_seen 9)
-                           (!srcfileloc  "../libcpp/include/cpplib.h" 728)
+                           (!srcfileloc  "../libcpp/include/cpplib.h" 731)
                            nil )
                           (!pair  "flags"
                            (!type already_seen 9)
-                           (!srcfileloc  "../libcpp/include/cpplib.h" 729)
+                           (!srcfileloc  "../libcpp/include/cpplib.h" 732)
                            nil )
                           (!pair  "value"
                            (!type union 626 nil  gc_used "_cpp_hashnode_value"
-                            (!srcfileloc  "../libcpp/include/cpplib.h" 719)
+                            (!srcfileloc  "../libcpp/include/cpplib.h" 722)
                             (!fields 4 
                              (!pair  "macro"
                               (!type pointer 627 nil  gc_used
@@ -13082,7 +13082,7 @@
                                 )
                                 nil 1023 nil nil )
                               )
-                              (!srcfileloc  "../libcpp/include/cpplib.h" 712)
+                              (!srcfileloc  "../libcpp/include/cpplib.h" 715)
                               (!options 
                                (!option tag string  "NTV_MACRO")
                               )
@@ -13114,28 +13114,28 @@
                                 )
                                 nil 1023 nil nil )
                               )
-                              (!srcfileloc  "../libcpp/include/cpplib.h" 714)
+                              (!srcfileloc  "../libcpp/include/cpplib.h" 717)
                               (!options 
                                (!option tag string  "NTV_ANSWER")
                               )
                              )
                              (!pair  "builtin"
                               (!type already_seen 9)
-                              (!srcfileloc  "../libcpp/include/cpplib.h" 716)
+                              (!srcfileloc  "../libcpp/include/cpplib.h" 719)
                               (!options 
                                (!option tag string  "NTV_BUILTIN")
                               )
                              )
                              (!pair  "arg_index"
                               (!type already_seen 9)
-                              (!srcfileloc  "../libcpp/include/cpplib.h" 718)
+                              (!srcfileloc  "../libcpp/include/cpplib.h" 721)
                               (!options 
                                (!option tag string  "NTV_ARGUMENT")
                               )
                              )
                             )
                             nil 1023 nil )
-                           (!srcfileloc  "../libcpp/include/cpplib.h" 731)
+                           (!srcfileloc  "../libcpp/include/cpplib.h" 734)
                            (!options 
                             (!option desc string  "CPP_HASHNODE_VALUE_IDX (%1)")
                            )
@@ -13184,7 +13184,7 @@
                        (!srcfileloc  "c/c-decl.c" 226)
                        (!fields 11 
                         (!pair  "u"
-                         (!type union 642 nil  gc_used "anonymous:/home/kangdroid/linaro/objdir/../build/../gcc/gcc-linaro-4.9-android-picked/gcc/c/c-decl.c:212"
+                         (!type union 642 nil  gc_used "anonymous:/home/kangdroid/linaro/objdir/../build/../gcc/gcc-master/gcc/c/c-decl.c:212"
                           (!srcfileloc  "c/c-decl.c" 215)
                           (!fields 2 
                            (!pair  "type"
@@ -14279,7 +14279,7 @@
   (!fields 0 )
   nil 0 nil nil )
  
- (!type struct 707 nil  gc_unused "anonymous:/home/kangdroid/linaro/objdir/../build/../gcc/gcc-linaro-4.9-android-picked/gcc/java/expr.c:2066"nil 
+ (!type struct 707 nil  gc_unused "anonymous:/home/kangdroid/linaro/objdir/../build/../gcc/gcc-master/gcc/java/expr.c:2066"nil 
   (!fields 0 )
   nil 0 nil nil )
  
@@ -14471,11 +14471,11 @@
  
  (!type already_seen 722)
  
- (!type struct 723 nil  gc_unused "anonymous:/home/kangdroid/linaro/objdir/../build/../gcc/gcc-linaro-4.9-android-picked/gcc/fortran/trans.h:349"nil 
+ (!type struct 723 nil  gc_unused "anonymous:/home/kangdroid/linaro/objdir/../build/../gcc/gcc-master/gcc/fortran/trans.h:349"nil 
   (!fields 0 )
   nil 0 nil nil )
  
- (!type struct 724 nil  gc_unused "anonymous:/home/kangdroid/linaro/objdir/../build/../gcc/gcc-linaro-4.9-android-picked/gcc/fortran/trans.h:337"nil 
+ (!type struct 724 nil  gc_unused "anonymous:/home/kangdroid/linaro/objdir/../build/../gcc/gcc-master/gcc/fortran/trans.h:337"nil 
   (!fields 0 )
   nil 0 nil nil )
  
@@ -14499,7 +14499,7 @@
   (!fields 0 )
   nil 0 nil nil )
  
- (!type struct 730 nil  gc_unused "anonymous:/home/kangdroid/linaro/objdir/../build/../gcc/gcc-linaro-4.9-android-picked/gcc/fortran/trans.h:33"nil 
+ (!type struct 730 nil  gc_unused "anonymous:/home/kangdroid/linaro/objdir/../build/../gcc/gcc-master/gcc/fortran/trans.h:33"nil 
   (!fields 0 )
   nil 0 nil nil )
  
@@ -15952,14 +15952,14 @@
    (!type already_seen 850)
   )
   gc_pointed_to "hash_table<conv_type_hasher>"
-  (!srcfileloc  "cp/mangle.c" 3784)
+  (!srcfileloc  "cp/mangle.c" 3761)
   (!fields 1 
    (!pair  "conv_type_hasher"
     (!type struct 852 nil  gc_used "conv_type_hasher"
-     (!srcfileloc  "cp/mangle.c" 3784)
+     (!srcfileloc  "cp/mangle.c" 3761)
      (!fields 0 )
      nil 516 nil nil )
-    (!srcfileloc  "cp/mangle.c" 3784)
+    (!srcfileloc  "cp/mangle.c" 3761)
     nil )
   )
  )
@@ -16035,7 +16035,7 @@
   (!fields 0 )
   nil 0 nil nil )
  
- (!type struct 858 nil  gc_unused "anonymous:/home/kangdroid/linaro/objdir/../build/../gcc/gcc-linaro-4.9-android-picked/gcc/c/c-parser.c:6198"nil 
+ (!type struct 858 nil  gc_unused "anonymous:/home/kangdroid/linaro/objdir/../build/../gcc/gcc-master/gcc/c/c-parser.c:6198"nil 
   (!fields 0 )
   nil 0 nil nil )
  
@@ -16162,7 +16162,7 @@
   (!fields 0 )
   nil 0 nil nil )
  
- (!type struct 867 nil  gc_unused "anonymous:/home/kangdroid/linaro/objdir/../build/../gcc/gcc-linaro-4.9-android-picked/gcc/c-family/c-pragma.c:1187"nil 
+ (!type struct 867 nil  gc_unused "anonymous:/home/kangdroid/linaro/objdir/../build/../gcc/gcc-master/gcc/c-family/c-pragma.c:1187"nil 
   (!fields 0 )
   nil 0 nil nil )
  
@@ -16731,7 +16731,7 @@
   (!fields 0 )
   nil 0 nil nil )
  
- (!type struct 932 nil  gc_unused "anonymous:/home/kangdroid/linaro/objdir/../build/../gcc/gcc-linaro-4.9-android-picked/gcc/ada/gcc-interface/decl.c:218"nil 
+ (!type struct 932 nil  gc_unused "anonymous:/home/kangdroid/linaro/objdir/../build/../gcc/gcc-master/gcc/ada/gcc-interface/decl.c:218"nil 
   (!fields 0 )
   nil 0 nil nil )
  
@@ -16806,7 +16806,7 @@
   (!fields 0 )
   nil 0 nil nil )
  
- (!type struct 949 nil  gc_unused "anonymous:/home/kangdroid/linaro/objdir/../build/../gcc/gcc-linaro-4.9-android-picked/gcc/config/arm/arm-builtins.c:195"nil 
+ (!type struct 949 nil  gc_unused "anonymous:/home/kangdroid/linaro/objdir/../build/../gcc/gcc-master/gcc/config/arm/arm-builtins.c:195"nil 
   (!fields 0 )
   nil 0 nil nil )
  
@@ -16964,7 +16964,7 @@
   (!fields 0 )
   nil 0 nil nil )
  
- (!type struct 967 nil  gc_unused "anonymous:/home/kangdroid/linaro/objdir/../build/../gcc/gcc-linaro-4.9-android-picked/gcc/ipa-devirt.c:174"nil 
+ (!type struct 967 nil  gc_unused "anonymous:/home/kangdroid/linaro/objdir/../build/../gcc/gcc-master/gcc/ipa-devirt.c:174"nil 
   (!fields 0 )
   nil 0 nil nil )
  
@@ -17502,7 +17502,7 @@
                 (!srcfileloc  "gimple.h" 284)
                 nil )
                (!pair  "u"
-                (!type union 1036 nil  gc_used "anonymous:/home/kangdroid/linaro/objdir/../build/../gcc/gcc-linaro-4.9-android-picked/gcc/gimple.h:287"
+                (!type union 1036 nil  gc_used "anonymous:/home/kangdroid/linaro/objdir/../build/../gcc/gcc-master/gcc/gimple.h:287"
                  (!srcfileloc  "gimple.h" 290)
                  (!fields 2 
                   (!pair  "fntype"
@@ -18729,11 +18729,11 @@
  
  (!type already_seen 1137)
  
- (!type struct 1138 nil  gc_unused "anonymous:/home/kangdroid/linaro/objdir/../build/../gcc/gcc-linaro-4.9-android-picked/gcc/config/arm/arm.c:3294"nil 
+ (!type struct 1138 nil  gc_unused "anonymous:/home/kangdroid/linaro/objdir/../build/../gcc/gcc-master/gcc/config/arm/arm.c:3294"nil 
   (!fields 0 )
   nil 0 nil nil )
  
- (!type struct 1139 nil  gc_unused "anonymous:/home/kangdroid/linaro/objdir/../build/../gcc/gcc-linaro-4.9-android-picked/gcc/config/arm/arm.c:2256"nil 
+ (!type struct 1139 nil  gc_unused "anonymous:/home/kangdroid/linaro/objdir/../build/../gcc/gcc-master/gcc/config/arm/arm.c:2256"nil 
   (!fields 0 )
   nil 0 nil nil )
  
@@ -19023,7 +19023,7 @@
   (!fields 0 )
   nil 0 nil nil )
  
- (!type union 1195 nil  gc_unused "anonymous:/home/kangdroid/linaro/objdir/../build/../gcc/gcc-linaro-4.9-android-picked/gcc/tree-eh.c:89"nil 
+ (!type union 1195 nil  gc_unused "anonymous:/home/kangdroid/linaro/objdir/../build/../gcc/gcc-master/gcc/tree-eh.c:89"nil 
   (!fields 0 )
   nil 0 nil )
  
@@ -19303,11 +19303,11 @@
  
  (!type already_seen 1220)
  
- (!type struct 1221 nil  gc_unused "anonymous:/home/kangdroid/linaro/objdir/../build/../gcc/gcc-linaro-4.9-android-picked/gcc/varasm.c:4904"nil 
+ (!type struct 1221 nil  gc_unused "anonymous:/home/kangdroid/linaro/objdir/../build/../gcc/gcc-master/gcc/varasm.c:4904"nil 
   (!fields 0 )
   nil 0 nil nil )
  
- (!type struct 1222 nil  gc_unused "anonymous:/home/kangdroid/linaro/objdir/../build/../gcc/gcc-linaro-4.9-android-picked/gcc/varasm.c:4661"nil 
+ (!type struct 1222 nil  gc_unused "anonymous:/home/kangdroid/linaro/objdir/../build/../gcc/gcc-master/gcc/varasm.c:4661"nil 
   (!fields 0 )
   nil 0 nil nil )
  
@@ -19583,7 +19583,7 @@
   (!fields 0 )
   nil 0 nil nil )
  
- (!type union 1268 nil  gc_unused "anonymous:/home/kangdroid/linaro/objdir/../build/../gcc/gcc-linaro-4.9-android-picked/gcc/mcf.c:355"nil 
+ (!type union 1268 nil  gc_unused "anonymous:/home/kangdroid/linaro/objdir/../build/../gcc/gcc-master/gcc/mcf.c:355"nil 
   (!fields 0 )
   nil 0 nil )
  
@@ -20820,11 +20820,11 @@
   (!fields 0 )
   nil 0 nil nil )
  
- (!type struct 1434 nil  gc_unused "anonymous:/home/kangdroid/linaro/objdir/../build/../gcc/gcc-linaro-4.9-android-picked/gcc/dwarf2cfi.c:282"nil 
+ (!type struct 1434 nil  gc_unused "anonymous:/home/kangdroid/linaro/objdir/../build/../gcc/gcc-master/gcc/dwarf2cfi.c:282"nil 
   (!fields 0 )
   nil 0 nil nil )
  
- (!type struct 1435 nil  gc_unused "anonymous:/home/kangdroid/linaro/objdir/../build/../gcc/gcc-linaro-4.9-android-picked/gcc/dwarf2cfi.c:240"nil 
+ (!type struct 1435 nil  gc_unused "anonymous:/home/kangdroid/linaro/objdir/../build/../gcc/gcc-master/gcc/dwarf2cfi.c:240"nil 
   (!fields 0 )
   nil 0 nil nil )
  
@@ -20836,7 +20836,7 @@
   (!type pointer 1438 nil  gc_unused
    (!type already_seen 1437)
   )
-  gc_unused "anonymous:/home/kangdroid/linaro/objdir/../build/../gcc/gcc-linaro-4.9-android-picked/gcc/dwarf2cfi.c:123"nil 
+  gc_unused "anonymous:/home/kangdroid/linaro/objdir/../build/../gcc/gcc-master/gcc/dwarf2cfi.c:123"nil 
   (!fields 0 )
   nil 0 nil nil )
  
@@ -23484,7 +23484,7 @@
   (!fields 0 )
   nil 0 nil nil )
  
- (!type struct 1655 nil  gc_unused "anonymous:/home/kangdroid/linaro/objdir/../build/../gcc/gcc-linaro-4.9-android-picked/gcc/config/arm/arm.h:1554"nil 
+ (!type struct 1655 nil  gc_unused "anonymous:/home/kangdroid/linaro/objdir/../build/../gcc/gcc-master/gcc/config/arm/arm.h:1554"nil 
   (!fields 0 )
   nil 0 nil nil )
  
@@ -24113,11 +24113,11 @@
   (!fields 0 )
   nil 0 nil nil )
  
- (!type struct 1711 nil  gc_unused "anonymous:/home/kangdroid/linaro/objdir/../build/../gcc/gcc-linaro-4.9-android-picked/gcc/../libcpp/include/cpplib.h:1026"nil 
+ (!type struct 1711 nil  gc_unused "anonymous:/home/kangdroid/linaro/objdir/../build/../gcc/gcc-master/gcc/../libcpp/include/cpplib.h:1030"nil 
   (!fields 0 )
   nil 0 nil nil )
  
- (!type struct 1712 nil  gc_unused "anonymous:/home/kangdroid/linaro/objdir/../build/../gcc/gcc-linaro-4.9-android-picked/gcc/../libcpp/include/cpplib.h:1015"nil 
+ (!type struct 1712 nil  gc_unused "anonymous:/home/kangdroid/linaro/objdir/../build/../gcc/gcc-master/gcc/../libcpp/include/cpplib.h:1019"nil 
   (!fields 0 )
   nil 0 nil nil )
  
@@ -24171,7 +24171,7 @@
   (!fields 0 )
   nil 0 nil nil )
  
- (!type struct 1721 nil  gc_unused "anonymous:/home/kangdroid/linaro/objdir/../build/../gcc/gcc-linaro-4.9-android-picked/gcc/../libcpp/include/line-map.h:723"nil 
+ (!type struct 1721 nil  gc_unused "anonymous:/home/kangdroid/linaro/objdir/../build/../gcc/gcc-master/gcc/../libcpp/include/line-map.h:723"nil 
   (!fields 0 )
   nil 0 nil nil )
  
@@ -24915,7 +24915,7 @@
   nil )
  (!pair  "deferred_access_check"
   (!type already_seen 75)
-  (!srcfileloc  "cp/cp-tree.h" 5854)
+  (!srcfileloc  "cp/cp-tree.h" 5855)
   nil )
  (!pair  "walk_namespaces_fn"
   (!type already_seen 9)
@@ -25135,11 +25135,11 @@
   nil )
  (!pair  "conv_type_hasher"
   (!type already_seen 852)
-  (!srcfileloc  "cp/mangle.c" 3784)
+  (!srcfileloc  "cp/mangle.c" 3761)
   nil )
  (!pair  "hash_table<conv_type_hasher>"
   (!type already_seen 850)
-  (!srcfileloc  "cp/mangle.c" 3784)
+  (!srcfileloc  "cp/mangle.c" 3761)
   nil )
  (!pair  "substitution_identifier_index_t"
   (!type already_seen 9)
@@ -27189,27 +27189,27 @@
   nil )
  (!pair  "cpp_cb"
   (!type already_seen 9)
-  (!srcfileloc  "../libcpp/include/cpplib.h" 1048)
+  (!srcfileloc  "../libcpp/include/cpplib.h" 1052)
   nil )
  (!pair  "cpp_comment_table"
   (!type already_seen 1711)
-  (!srcfileloc  "../libcpp/include/cpplib.h" 1035)
+  (!srcfileloc  "../libcpp/include/cpplib.h" 1039)
   nil )
  (!pair  "cpp_comment"
   (!type already_seen 1712)
-  (!srcfileloc  "../libcpp/include/cpplib.h" 1021)
+  (!srcfileloc  "../libcpp/include/cpplib.h" 1025)
   nil )
  (!pair  "cpp_num"
   (!type already_seen 1713)
-  (!srcfileloc  "../libcpp/include/cpplib.h" 848)
+  (!srcfileloc  "../libcpp/include/cpplib.h" 851)
   nil )
  (!pair  "cpp_num_part"
   (!type already_seen 9)
-  (!srcfileloc  "../libcpp/include/cpplib.h" 847)
+  (!srcfileloc  "../libcpp/include/cpplib.h" 850)
   nil )
  (!pair  "missing_header_cb"
   (!type already_seen 9)
-  (!srcfileloc  "../libcpp/include/cpplib.h" 537)
+  (!srcfileloc  "../libcpp/include/cpplib.h" 540)
   nil )
  (!pair  "cppchar_signed_t"
   (!type already_seen 9)
@@ -27336,7 +27336,7 @@
   (!srcfileloc  "gengtype.c" 5247)
   nil )
 )
-(!variables 634
+(!variables 635
  (!pair  "objc_eh_personality_decl"
   (!type already_seen 5)
   (!srcfileloc  "objc/objc-next-runtime-abi-02.c" 3619)
@@ -28466,19 +28466,23 @@
   nil )
  (!pair  "ssdf_decls"
   (!type already_seen 49)
-  (!srcfileloc  "cp/decl2.c" 3424)
+  (!srcfileloc  "cp/decl2.c" 3428)
   nil )
  (!pair  "ssdf_decl"
   (!type already_seen 5)
-  (!srcfileloc  "cp/decl2.c" 3420)
+  (!srcfileloc  "cp/decl2.c" 3424)
   nil )
  (!pair  "priority_decl"
   (!type already_seen 5)
-  (!srcfileloc  "cp/decl2.c" 3417)
+  (!srcfileloc  "cp/decl2.c" 3421)
   nil )
  (!pair  "initialize_p_decl"
   (!type already_seen 5)
-  (!srcfileloc  "cp/decl2.c" 3414)
+  (!srcfileloc  "cp/decl2.c" 3418)
+  nil )
+ (!pair  "mangling_aliases"
+  (!type already_seen 49)
+  (!srcfileloc  "cp/decl2.c" 123)
   nil )
  (!pair  "no_linkage_decls"
   (!type already_seen 49)
@@ -28514,7 +28518,7 @@
   nil )
  (!pair  "unemitted_tinfo_decls"
   (!type already_seen 49)
-  (!srcfileloc  "cp/cp-tree.h" 5788)
+  (!srcfileloc  "cp/cp-tree.h" 5789)
   nil )
  (!pair  "deferred_mark_used_calls"
   (!type already_seen 49)
@@ -28605,11 +28609,11 @@
   nil )
  (!pair  "temp_count"
   (!type already_seen 9)
-  (!srcfileloc  "cp/mangle.c" 3913)
+  (!srcfileloc  "cp/mangle.c" 3890)
   nil )
  (!pair  "conv_type_names"
   (!type already_seen 851)
-  (!srcfileloc  "cp/mangle.c" 3784)
+  (!srcfileloc  "cp/mangle.c" 3761)
   nil )
  (!pair  "subst_identifiers"
   (!type array 1768 nil  gc_used "SUBID_MAX" 
@@ -29428,14 +29432,14 @@
     (!type already_seen 135)
    )
   )
-  (!srcfileloc  "emit-rtl.c" 6209)
+  (!srcfileloc  "emit-rtl.c" 6205)
   (!options 
    (!option deletable string  "")
   )
  )
  (!pair  "free_sequence_stack"
   (!type already_seen 1553)
-  (!srcfileloc  "emit-rtl.c" 5358)
+  (!srcfileloc  "emit-rtl.c" 5354)
   (!options 
    (!option deletable string  "")
   )

@@ -395,10 +395,10 @@ extern int warn_cxx_compat;
 #define warn_cxx_compat global_options.x_warn_cxx_compat
 #endif
 #ifdef GENERATOR_FILE
-extern int warn_cxx0x_compat;
+extern int warn_cxx11_compat;
 #else
-  int x_warn_cxx0x_compat;
-#define warn_cxx0x_compat global_options.x_warn_cxx0x_compat
+  int x_warn_cxx11_compat;
+#define warn_cxx11_compat global_options.x_warn_cxx11_compat
 #endif
 #ifdef GENERATOR_FILE
 extern int warn_cxx14_compat;
@@ -5196,8 +5196,8 @@ enum opt_code
   OPT_Wboxing = 179,                         /* -Wboxing */
   OPT_Wbuiltin_macro_redefined = 180,        /* -Wbuiltin-macro-redefined */
   OPT_Wc___compat = 181,                     /* -Wc++-compat */
-  OPT_Wc__0x_compat = 182,                   /* -Wc++0x-compat */
-  /* OPT_Wc__11_compat = 183, */             /* -Wc++11-compat */
+  /* OPT_Wc__0x_compat = 182, */             /* -Wc++0x-compat */
+  OPT_Wc__11_compat = 183,                   /* -Wc++11-compat */
   OPT_Wc__14_compat = 184,                   /* -Wc++14-compat */
   OPT_Wc_binding_type = 185,                 /* -Wc-binding-type */
   OPT_Wc90_c99_compat = 186,                 /* -Wc90-c99-compat */
@@ -6325,6 +6325,7 @@ struct cpp_reason_option_codes_t
 static const struct cpp_reason_option_codes_t cpp_reason_option_codes[] = {
   {CPP_W_BUILTIN_MACRO_REDEFINED,           OPT_Wbuiltin_macro_redefined},
   {CPP_W_CXX_OPERATOR_NAMES,                OPT_Wc___compat},
+  {CPP_W_CXX11_COMPAT,                      OPT_Wc__11_compat},
   {CPP_W_C90_C99_COMPAT,                    OPT_Wc90_c99_compat},
   {CPP_W_COMMENTS,                          OPT_Wcomment},
   {CPP_W_WARNING_DIRECTIVE,                 OPT_Wcpp},

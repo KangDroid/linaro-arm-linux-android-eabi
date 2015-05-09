@@ -40675,7 +40675,7 @@ File: gccint.info,  Node: GIMPLE API,  Next: The Language,  Up: Match and Simpli
  -- GIMPLE function: tree gimple_simplify (enum built_in_function, tree,
           tree, tree, gimple_seq *, tree (*)(tree))
  -- GIMPLE function: tree gimple_simplify (enum built_in_function, tree,
-          tree, tree, gimple_seq *, tree (*)(tree))
+          tree, tree, tree, gimple_seq *, tree (*)(tree))
      The main GIMPLE API entry to the expression simplifications
      mimicing that of the GENERIC fold_{unary,binary,ternary} functions.
 
@@ -40705,6 +40705,9 @@ hook:
  -- GIMPLE function: tree gimple_build (gimple_seq *, location_t, enum
           built_in_function, tree, tree, tree, tree (*valueize) (tree) =
           NULL);
+ -- GIMPLE function: tree gimple_build (gimple_seq *, location_t, enum
+          built_in_function, tree, tree, tree, tree, tree (*valueize)
+          (tree) = NULL);
  -- GIMPLE function: tree gimple_convert (gimple_seq *, location_t,
           tree, tree);
 
@@ -48035,6 +48038,7 @@ Concept Index
 * gimple_build <2>:                      GIMPLE API.         (line   38)
 * gimple_build <3>:                      GIMPLE API.         (line   41)
 * gimple_build <4>:                      GIMPLE API.         (line   44)
+* gimple_build <5>:                      GIMPLE API.         (line   47)
 * gimple_build_nop:                      'GIMPLE_NOP'.       (line    6)
 * gimple_build_omp_master:               'GIMPLE_OMP_MASTER'.
                                                              (line    6)
@@ -48088,7 +48092,7 @@ Concept Index
 * gimple_cond_set_rhs:                   'GIMPLE_COND'.      (line   41)
 * gimple_cond_set_true_label:            'GIMPLE_COND'.      (line   49)
 * gimple_cond_true_label:                'GIMPLE_COND'.      (line   45)
-* gimple_convert:                        GIMPLE API.         (line   47)
+* gimple_convert:                        GIMPLE API.         (line   50)
 * gimple_copy:                           Manipulating GIMPLE statements.
                                                              (line  146)
 * 'GIMPLE_DEBUG':                        'GIMPLE_DEBUG'.     (line    6)
@@ -51211,13 +51215,13 @@ Node: WHOPR1785806
 Node: Internal flags1790495
 Node: Match and Simplify1791906
 Node: GIMPLE API1792860
-Node: The Language1795482
-Node: Funding1804325
-Node: GNU Project1806824
-Node: Copying1807473
-Node: GNU Free Documentation License1844985
-Node: Contributors1870106
-Node: Option Index1908874
-Node: Concept Index1909751
+Node: The Language1795655
+Node: Funding1804498
+Node: GNU Project1806997
+Node: Copying1807646
+Node: GNU Free Documentation License1845158
+Node: Contributors1870279
+Node: Option Index1909047
+Node: Concept Index1909924
 
 End Tag Table
