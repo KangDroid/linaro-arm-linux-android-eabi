@@ -274,7 +274,7 @@ GNU m4 version 1.4.6 (or later)
      Necessary when modifying 'configure.ac', 'aclocal.m4', etc. to
      regenerate 'configure' and 'config.in' files.
 
-automake version 1.11.1
+automake version 1.11.6
 
      Necessary when modifying a 'Makefile.am' file to regenerate its
      associated 'Makefile.in'.
@@ -285,7 +285,7 @@ automake version 1.11.1
      of their subdirectories.
 
      For directories that use automake, GCC requires the latest release
-     in the 1.11 series, which is currently 1.11.1.  When regenerating a
+     in the 1.11 series, which is currently 1.11.6.  When regenerating a
      directory to a newer version, please update all the directories
      using an older 1.11 to the latest released version.
 
@@ -2984,6 +2984,12 @@ However, it is currently known that boehm-gc (which itself is required
 for java) may not configure properly on FreeBSD prior to the FreeBSD 7.0
 release with GNU binutils after 2.16.1.
 
+ft32-*-elf
+==========
+
+The FT32 processor.  This configuration is intended for embedded
+systems.
+
 h8300-hms
 =========
 
@@ -4768,75 +4774,76 @@ Ref: cris127007
 Ref: dos127822
 Ref: epiphany-x-elf128145
 Ref: x-x-freebsd128250
-Ref: h8300-hms130086
-Ref: hppa-hp-hpux130438
-Ref: hppa-hp-hpux10132810
-Ref: hppa-hp-hpux11133223
-Ref: x-x-linux-gnu138882
-Ref: ix86-x-linux139075
-Ref: ix86-x-solaris210139388
-Ref: ia64-x-linux140579
-Ref: ia64-x-hpux141349
-Ref: x-ibm-aix141904
-Ref: TransferAixShobj145087
-Ref: iq2000-x-elf148897
-Ref: lm32-x-elf149037
-Ref: lm32-x-uclinux149141
-Ref: m32c-x-elf149269
-Ref: m32r-x-elf149371
-Ref: m68k-x-x149473
-Ref: m68k-x-uclinux150511
-Ref: mep-x-elf150756
-Ref: microblaze-x-elf150866
-Ref: mips-x-x150985
-Ref: mips-sgi-irix5153379
-Ref: mips-sgi-irix6153459
-Ref: moxie-x-elf153646
-Ref: msp430-x-elf153693
-Ref: nds32le-x-elf153796
-Ref: nds32be-x-elf153868
-Ref: nvptx-x-none153937
-Ref: powerpc-x-x154464
-Ref: powerpc-x-darwin154669
-Ref: powerpc-x-elf155163
-Ref: powerpc-x-linux-gnu155248
-Ref: powerpc-x-netbsd155343
-Ref: powerpc-x-eabisim155431
-Ref: powerpc-x-eabi155557
-Ref: powerpcle-x-elf155633
-Ref: powerpcle-x-eabisim155725
-Ref: powerpcle-x-eabi155858
-Ref: rl78-x-elf155941
-Ref: rx-x-elf156047
-Ref: s390-x-linux156246
-Ref: s390x-x-linux156318
-Ref: s390x-ibm-tpf156405
-Ref: x-x-solaris2156536
-Ref: sparc-x-x160342
-Ref: sparc-sun-solaris2160844
-Ref: sparc-sun-solaris210163597
-Ref: sparc-x-linux163972
-Ref: sparc64-x-solaris2164197
-Ref: sparcv9-x-solaris2164850
-Ref: c6x-x-x164937
-Ref: tilegx-*-linux165029
-Ref: tilegxbe-*-linux165171
-Ref: tilepro-*-linux165314
-Ref: visium-x-elf165435
-Ref: x-x-vxworks165543
-Ref: x86-64-x-x167066
-Ref: x86-64-x-solaris210167394
-Ref: xtensa-x-elf168056
-Ref: xtensa-x-linux168727
-Ref: windows169068
-Ref: x-x-cygwin171001
-Ref: x-x-interix171554
-Ref: x-x-mingw32171862
-Ref: older172088
-Ref: elf174205
-Node: Old174463
-Node: Configurations177596
-Node: GNU Free Documentation License181134
-Node: Concept Index206262
+Ref: ft32-x-elf130086
+Ref: h8300-hms130184
+Ref: hppa-hp-hpux130536
+Ref: hppa-hp-hpux10132908
+Ref: hppa-hp-hpux11133321
+Ref: x-x-linux-gnu138980
+Ref: ix86-x-linux139173
+Ref: ix86-x-solaris210139486
+Ref: ia64-x-linux140677
+Ref: ia64-x-hpux141447
+Ref: x-ibm-aix142002
+Ref: TransferAixShobj145185
+Ref: iq2000-x-elf148995
+Ref: lm32-x-elf149135
+Ref: lm32-x-uclinux149239
+Ref: m32c-x-elf149367
+Ref: m32r-x-elf149469
+Ref: m68k-x-x149571
+Ref: m68k-x-uclinux150609
+Ref: mep-x-elf150854
+Ref: microblaze-x-elf150964
+Ref: mips-x-x151083
+Ref: mips-sgi-irix5153477
+Ref: mips-sgi-irix6153557
+Ref: moxie-x-elf153744
+Ref: msp430-x-elf153791
+Ref: nds32le-x-elf153894
+Ref: nds32be-x-elf153966
+Ref: nvptx-x-none154035
+Ref: powerpc-x-x154562
+Ref: powerpc-x-darwin154767
+Ref: powerpc-x-elf155261
+Ref: powerpc-x-linux-gnu155346
+Ref: powerpc-x-netbsd155441
+Ref: powerpc-x-eabisim155529
+Ref: powerpc-x-eabi155655
+Ref: powerpcle-x-elf155731
+Ref: powerpcle-x-eabisim155823
+Ref: powerpcle-x-eabi155956
+Ref: rl78-x-elf156039
+Ref: rx-x-elf156145
+Ref: s390-x-linux156344
+Ref: s390x-x-linux156416
+Ref: s390x-ibm-tpf156503
+Ref: x-x-solaris2156634
+Ref: sparc-x-x160440
+Ref: sparc-sun-solaris2160942
+Ref: sparc-sun-solaris210163695
+Ref: sparc-x-linux164070
+Ref: sparc64-x-solaris2164295
+Ref: sparcv9-x-solaris2164948
+Ref: c6x-x-x165035
+Ref: tilegx-*-linux165127
+Ref: tilegxbe-*-linux165269
+Ref: tilepro-*-linux165412
+Ref: visium-x-elf165533
+Ref: x-x-vxworks165641
+Ref: x86-64-x-x167164
+Ref: x86-64-x-solaris210167492
+Ref: xtensa-x-elf168154
+Ref: xtensa-x-linux168825
+Ref: windows169166
+Ref: x-x-cygwin171099
+Ref: x-x-interix171652
+Ref: x-x-mingw32171960
+Ref: older172186
+Ref: elf174303
+Node: Old174561
+Node: Configurations177694
+Node: GNU Free Documentation License181232
+Node: Concept Index206360
 
 End Tag Table

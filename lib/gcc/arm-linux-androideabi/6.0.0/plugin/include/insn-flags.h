@@ -14,6 +14,8 @@
 #define HAVE_insv_t2 (arm_arch_thumb2)
 #define HAVE_andsi_notsi_si (TARGET_32BIT)
 #define HAVE_andsi_not_shiftsi_si (TARGET_ARM)
+#define HAVE_andsi_not_shiftsi_si_scc_no_reuse (TARGET_ARM || (TARGET_THUMB2 && CONST_INT_P (operands[2])))
+#define HAVE_andsi_not_shiftsi_si_scc (TARGET_ARM || (TARGET_THUMB2 && CONST_INT_P (operands[2])))
 #define HAVE_arm_ashldi3_1bit (TARGET_32BIT)
 #define HAVE_arm_ashrdi3_1bit (TARGET_32BIT)
 #define HAVE_arm_lshrdi3_1bit (TARGET_32BIT)
@@ -2749,6 +2751,8 @@ extern rtx        gen_insv_zero                         (rtx, rtx, rtx);
 extern rtx        gen_insv_t2                           (rtx, rtx, rtx, rtx);
 extern rtx        gen_andsi_notsi_si                    (rtx, rtx, rtx);
 extern rtx        gen_andsi_not_shiftsi_si              (rtx, rtx, rtx, rtx, rtx);
+extern rtx        gen_andsi_not_shiftsi_si_scc_no_reuse (rtx, rtx, rtx, rtx);
+extern rtx        gen_andsi_not_shiftsi_si_scc          (rtx, rtx, rtx, rtx, rtx);
 extern rtx        gen_arm_ashldi3_1bit                  (rtx, rtx);
 extern rtx        gen_arm_ashrdi3_1bit                  (rtx, rtx);
 extern rtx        gen_arm_lshrdi3_1bit                  (rtx, rtx);

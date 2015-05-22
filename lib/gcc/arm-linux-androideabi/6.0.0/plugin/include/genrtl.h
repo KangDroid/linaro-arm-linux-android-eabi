@@ -11,7 +11,7 @@ gen_rtx_fmt_0_stat (RTX_CODE code, machine_mode mode MEM_STAT_DECL)
   rtx rt;
   rt = rtx_alloc_stat (code PASS_MEM_STAT);
 
-  PUT_MODE (rt, mode);
+  PUT_MODE_RAW (rt, mode);
   X0EXP (rt, 0) = NULL_RTX;
 
   return rt;
@@ -28,7 +28,7 @@ gen_rtx_fmt_ee_stat (RTX_CODE code, machine_mode mode,
   rtx rt;
   rt = rtx_alloc_stat (code PASS_MEM_STAT);
 
-  PUT_MODE (rt, mode);
+  PUT_MODE_RAW (rt, mode);
   XEXP (rt, 0) = arg0;
   XEXP (rt, 1) = arg1;
 
@@ -46,7 +46,7 @@ gen_rtx_fmt_ue_stat (RTX_CODE code, machine_mode mode,
   rtx rt;
   rt = rtx_alloc_stat (code PASS_MEM_STAT);
 
-  PUT_MODE (rt, mode);
+  PUT_MODE_RAW (rt, mode);
   XEXP (rt, 0) = arg0;
   XEXP (rt, 1) = arg1;
 
@@ -64,7 +64,7 @@ gen_rtx_fmt_ie_stat (RTX_CODE code, machine_mode mode,
   rtx rt;
   rt = rtx_alloc_stat (code PASS_MEM_STAT);
 
-  PUT_MODE (rt, mode);
+  PUT_MODE_RAW (rt, mode);
   XINT (rt, 0) = arg0;
   XEXP (rt, 1) = arg1;
 
@@ -81,7 +81,7 @@ gen_rtx_fmt_E_stat (RTX_CODE code, machine_mode mode,
   rtx rt;
   rt = rtx_alloc_stat (code PASS_MEM_STAT);
 
-  PUT_MODE (rt, mode);
+  PUT_MODE_RAW (rt, mode);
   XVEC (rt, 0) = arg0;
 
   return rt;
@@ -97,7 +97,7 @@ gen_rtx_fmt_i_stat (RTX_CODE code, machine_mode mode,
   rtx rt;
   rt = rtx_alloc_stat (code PASS_MEM_STAT);
 
-  PUT_MODE (rt, mode);
+  PUT_MODE_RAW (rt, mode);
   XINT (rt, 0) = arg0;
 
   return rt;
@@ -119,7 +119,7 @@ gen_rtx_fmt_uuBeiie_stat (RTX_CODE code, machine_mode mode,
   rtx rt;
   rt = rtx_alloc_stat (code PASS_MEM_STAT);
 
-  PUT_MODE (rt, mode);
+  PUT_MODE_RAW (rt, mode);
   XEXP (rt, 0) = arg0;
   XEXP (rt, 1) = arg1;
   XBBDEF (rt, 2) = arg2;
@@ -147,7 +147,7 @@ gen_rtx_fmt_uuBeiie0_stat (RTX_CODE code, machine_mode mode,
   rtx rt;
   rt = rtx_alloc_stat (code PASS_MEM_STAT);
 
-  PUT_MODE (rt, mode);
+  PUT_MODE_RAW (rt, mode);
   XEXP (rt, 0) = arg0;
   XEXP (rt, 1) = arg1;
   XBBDEF (rt, 2) = arg2;
@@ -177,7 +177,7 @@ gen_rtx_fmt_uuBeiiee_stat (RTX_CODE code, machine_mode mode,
   rtx rt;
   rt = rtx_alloc_stat (code PASS_MEM_STAT);
 
-  PUT_MODE (rt, mode);
+  PUT_MODE_RAW (rt, mode);
   XEXP (rt, 0) = arg0;
   XEXP (rt, 1) = arg1;
   XBBDEF (rt, 2) = arg2;
@@ -203,7 +203,7 @@ gen_rtx_fmt_uuBe0000_stat (RTX_CODE code, machine_mode mode,
   rtx rt;
   rt = rtx_alloc_stat (code PASS_MEM_STAT);
 
-  PUT_MODE (rt, mode);
+  PUT_MODE_RAW (rt, mode);
   XEXP (rt, 0) = arg0;
   XEXP (rt, 1) = arg1;
   XBBDEF (rt, 2) = arg2;
@@ -227,7 +227,7 @@ gen_rtx_fmt_uu00000_stat (RTX_CODE code, machine_mode mode,
   rtx rt;
   rt = rtx_alloc_stat (code PASS_MEM_STAT);
 
-  PUT_MODE (rt, mode);
+  PUT_MODE_RAW (rt, mode);
   XEXP (rt, 0) = arg0;
   XEXP (rt, 1) = arg1;
   X0EXP (rt, 2) = NULL_RTX;
@@ -253,7 +253,7 @@ gen_rtx_fmt_uuB00is_stat (RTX_CODE code, machine_mode mode,
   rtx rt;
   rt = rtx_alloc_stat (code PASS_MEM_STAT);
 
-  PUT_MODE (rt, mode);
+  PUT_MODE_RAW (rt, mode);
   XEXP (rt, 0) = arg0;
   XEXP (rt, 1) = arg1;
   XBBDEF (rt, 2) = arg2;
@@ -276,7 +276,7 @@ gen_rtx_fmt_si_stat (RTX_CODE code, machine_mode mode,
   rtx rt;
   rt = rtx_alloc_stat (code PASS_MEM_STAT);
 
-  PUT_MODE (rt, mode);
+  PUT_MODE_RAW (rt, mode);
   XSTR (rt, 0) = arg0;
   XINT (rt, 1) = arg1;
 
@@ -299,7 +299,7 @@ gen_rtx_fmt_ssiEEEi_stat (RTX_CODE code, machine_mode mode,
   rtx rt;
   rt = rtx_alloc_stat (code PASS_MEM_STAT);
 
-  PUT_MODE (rt, mode);
+  PUT_MODE_RAW (rt, mode);
   XSTR (rt, 0) = arg0;
   XSTR (rt, 1) = arg1;
   XINT (rt, 2) = arg2;
@@ -322,7 +322,7 @@ gen_rtx_fmt_Ei_stat (RTX_CODE code, machine_mode mode,
   rtx rt;
   rt = rtx_alloc_stat (code PASS_MEM_STAT);
 
-  PUT_MODE (rt, mode);
+  PUT_MODE_RAW (rt, mode);
   XVEC (rt, 0) = arg0;
   XINT (rt, 1) = arg1;
 
@@ -342,7 +342,7 @@ gen_rtx_fmt_eEee0_stat (RTX_CODE code, machine_mode mode,
   rtx rt;
   rt = rtx_alloc_stat (code PASS_MEM_STAT);
 
-  PUT_MODE (rt, mode);
+  PUT_MODE_RAW (rt, mode);
   XEXP (rt, 0) = arg0;
   XVEC (rt, 1) = arg1;
   XEXP (rt, 2) = arg2;
@@ -364,7 +364,7 @@ gen_rtx_fmt_eee_stat (RTX_CODE code, machine_mode mode,
   rtx rt;
   rt = rtx_alloc_stat (code PASS_MEM_STAT);
 
-  PUT_MODE (rt, mode);
+  PUT_MODE_RAW (rt, mode);
   XEXP (rt, 0) = arg0;
   XEXP (rt, 1) = arg1;
   XEXP (rt, 2) = arg2;
@@ -382,7 +382,7 @@ gen_rtx_fmt_e_stat (RTX_CODE code, machine_mode mode,
   rtx rt;
   rt = rtx_alloc_stat (code PASS_MEM_STAT);
 
-  PUT_MODE (rt, mode);
+  PUT_MODE_RAW (rt, mode);
   XEXP (rt, 0) = arg0;
 
   return rt;
@@ -397,7 +397,7 @@ gen_rtx_fmt__stat (RTX_CODE code, machine_mode mode MEM_STAT_DECL)
   rtx rt;
   rt = rtx_alloc_stat (code PASS_MEM_STAT);
 
-  PUT_MODE (rt, mode);
+  PUT_MODE_RAW (rt, mode);
 
   return rt;
 }
@@ -412,7 +412,7 @@ gen_rtx_fmt_w_stat (RTX_CODE code, machine_mode mode,
   rtx rt;
   rt = rtx_alloc_stat (code PASS_MEM_STAT);
 
-  PUT_MODE (rt, mode);
+  PUT_MODE_RAW (rt, mode);
   XWINT (rt, 0) = arg0;
 
   return rt;
@@ -430,7 +430,7 @@ gen_rtx_fmt_www_stat (RTX_CODE code, machine_mode mode,
   rtx rt;
   rt = rtx_alloc_stat (code PASS_MEM_STAT);
 
-  PUT_MODE (rt, mode);
+  PUT_MODE_RAW (rt, mode);
   XWINT (rt, 0) = arg0;
   XWINT (rt, 1) = arg1;
   XWINT (rt, 2) = arg2;
@@ -448,7 +448,7 @@ gen_rtx_fmt_s_stat (RTX_CODE code, machine_mode mode,
   rtx rt;
   rt = rtx_alloc_stat (code PASS_MEM_STAT);
 
-  PUT_MODE (rt, mode);
+  PUT_MODE_RAW (rt, mode);
   XSTR (rt, 0) = arg0;
 
   return rt;
@@ -458,23 +458,6 @@ gen_rtx_fmt_s_stat (RTX_CODE code, machine_mode mode,
         gen_rtx_fmt_s_stat (c, m, p0 MEM_STAT_INFO)
 
 static inline rtx
-gen_rtx_fmt_i0_stat (RTX_CODE code, machine_mode mode,
-	int arg0 MEM_STAT_DECL)
-{
-  rtx rt;
-  rt = rtx_alloc_stat (code PASS_MEM_STAT);
-
-  PUT_MODE (rt, mode);
-  XINT (rt, 0) = arg0;
-  X0EXP (rt, 1) = NULL_RTX;
-
-  return rt;
-}
-
-#define gen_rtx_fmt_i0(c, m, p0)\
-        gen_rtx_fmt_i0_stat (c, m, p0 MEM_STAT_INFO)
-
-static inline rtx
 gen_rtx_fmt_ei_stat (RTX_CODE code, machine_mode mode,
 	rtx arg0,
 	int arg1 MEM_STAT_DECL)
@@ -482,7 +465,7 @@ gen_rtx_fmt_ei_stat (RTX_CODE code, machine_mode mode,
   rtx rt;
   rt = rtx_alloc_stat (code PASS_MEM_STAT);
 
-  PUT_MODE (rt, mode);
+  PUT_MODE_RAW (rt, mode);
   XEXP (rt, 0) = arg0;
   XINT (rt, 1) = arg1;
 
@@ -499,7 +482,7 @@ gen_rtx_fmt_e0_stat (RTX_CODE code, machine_mode mode,
   rtx rt;
   rt = rtx_alloc_stat (code PASS_MEM_STAT);
 
-  PUT_MODE (rt, mode);
+  PUT_MODE_RAW (rt, mode);
   XEXP (rt, 0) = arg0;
   X0EXP (rt, 1) = NULL_RTX;
 
@@ -516,7 +499,7 @@ gen_rtx_fmt_u_stat (RTX_CODE code, machine_mode mode,
   rtx rt;
   rt = rtx_alloc_stat (code PASS_MEM_STAT);
 
-  PUT_MODE (rt, mode);
+  PUT_MODE_RAW (rt, mode);
   XEXP (rt, 0) = arg0;
 
   return rt;
@@ -532,7 +515,7 @@ gen_rtx_fmt_s0_stat (RTX_CODE code, machine_mode mode,
   rtx rt;
   rt = rtx_alloc_stat (code PASS_MEM_STAT);
 
-  PUT_MODE (rt, mode);
+  PUT_MODE_RAW (rt, mode);
   XSTR (rt, 0) = arg0;
   X0EXP (rt, 1) = NULL_RTX;
 
@@ -550,7 +533,7 @@ gen_rtx_fmt_te_stat (RTX_CODE code, machine_mode mode,
   rtx rt;
   rt = rtx_alloc_stat (code PASS_MEM_STAT);
 
-  PUT_MODE (rt, mode);
+  PUT_MODE_RAW (rt, mode);
   XTREE (rt, 0) = arg0;
   XEXP (rt, 1) = arg1;
 
@@ -567,7 +550,7 @@ gen_rtx_fmt_t_stat (RTX_CODE code, machine_mode mode,
   rtx rt;
   rt = rtx_alloc_stat (code PASS_MEM_STAT);
 
-  PUT_MODE (rt, mode);
+  PUT_MODE_RAW (rt, mode);
   XTREE (rt, 0) = arg0;
 
   return rt;
@@ -585,7 +568,7 @@ gen_rtx_fmt_iss_stat (RTX_CODE code, machine_mode mode,
   rtx rt;
   rt = rtx_alloc_stat (code PASS_MEM_STAT);
 
-  PUT_MODE (rt, mode);
+  PUT_MODE_RAW (rt, mode);
   XINT (rt, 0) = arg0;
   XSTR (rt, 1) = arg1;
   XSTR (rt, 2) = arg2;
@@ -604,7 +587,7 @@ gen_rtx_fmt_is_stat (RTX_CODE code, machine_mode mode,
   rtx rt;
   rt = rtx_alloc_stat (code PASS_MEM_STAT);
 
-  PUT_MODE (rt, mode);
+  PUT_MODE_RAW (rt, mode);
   XINT (rt, 0) = arg0;
   XSTR (rt, 1) = arg1;
 
@@ -623,7 +606,7 @@ gen_rtx_fmt_isE_stat (RTX_CODE code, machine_mode mode,
   rtx rt;
   rt = rtx_alloc_stat (code PASS_MEM_STAT);
 
-  PUT_MODE (rt, mode);
+  PUT_MODE_RAW (rt, mode);
   XINT (rt, 0) = arg0;
   XSTR (rt, 1) = arg1;
   XVEC (rt, 2) = arg2;
@@ -642,7 +625,7 @@ gen_rtx_fmt_iE_stat (RTX_CODE code, machine_mode mode,
   rtx rt;
   rt = rtx_alloc_stat (code PASS_MEM_STAT);
 
-  PUT_MODE (rt, mode);
+  PUT_MODE_RAW (rt, mode);
   XINT (rt, 0) = arg0;
   XVEC (rt, 1) = arg1;
 
@@ -660,7 +643,7 @@ gen_rtx_fmt_ss_stat (RTX_CODE code, machine_mode mode,
   rtx rt;
   rt = rtx_alloc_stat (code PASS_MEM_STAT);
 
-  PUT_MODE (rt, mode);
+  PUT_MODE_RAW (rt, mode);
   XSTR (rt, 0) = arg0;
   XSTR (rt, 1) = arg1;
 
@@ -678,7 +661,7 @@ gen_rtx_fmt_eE_stat (RTX_CODE code, machine_mode mode,
   rtx rt;
   rt = rtx_alloc_stat (code PASS_MEM_STAT);
 
-  PUT_MODE (rt, mode);
+  PUT_MODE_RAW (rt, mode);
   XEXP (rt, 0) = arg0;
   XVEC (rt, 1) = arg1;
 
@@ -697,7 +680,7 @@ gen_rtx_fmt_ses_stat (RTX_CODE code, machine_mode mode,
   rtx rt;
   rt = rtx_alloc_stat (code PASS_MEM_STAT);
 
-  PUT_MODE (rt, mode);
+  PUT_MODE_RAW (rt, mode);
   XSTR (rt, 0) = arg0;
   XEXP (rt, 1) = arg1;
   XSTR (rt, 2) = arg2;
@@ -717,7 +700,7 @@ gen_rtx_fmt_sss_stat (RTX_CODE code, machine_mode mode,
   rtx rt;
   rt = rtx_alloc_stat (code PASS_MEM_STAT);
 
-  PUT_MODE (rt, mode);
+  PUT_MODE_RAW (rt, mode);
   XSTR (rt, 0) = arg0;
   XSTR (rt, 1) = arg1;
   XSTR (rt, 2) = arg2;
@@ -737,7 +720,7 @@ gen_rtx_fmt_sse_stat (RTX_CODE code, machine_mode mode,
   rtx rt;
   rt = rtx_alloc_stat (code PASS_MEM_STAT);
 
-  PUT_MODE (rt, mode);
+  PUT_MODE_RAW (rt, mode);
   XSTR (rt, 0) = arg0;
   XSTR (rt, 1) = arg1;
   XEXP (rt, 2) = arg2;
@@ -758,7 +741,7 @@ gen_rtx_fmt_sies_stat (RTX_CODE code, machine_mode mode,
   rtx rt;
   rt = rtx_alloc_stat (code PASS_MEM_STAT);
 
-  PUT_MODE (rt, mode);
+  PUT_MODE_RAW (rt, mode);
   XSTR (rt, 0) = arg0;
   XINT (rt, 1) = arg1;
   XEXP (rt, 2) = arg2;
@@ -778,7 +761,7 @@ gen_rtx_fmt_sE_stat (RTX_CODE code, machine_mode mode,
   rtx rt;
   rt = rtx_alloc_stat (code PASS_MEM_STAT);
 
-  PUT_MODE (rt, mode);
+  PUT_MODE_RAW (rt, mode);
   XSTR (rt, 0) = arg0;
   XVEC (rt, 1) = arg1;
 
@@ -796,7 +779,7 @@ gen_rtx_fmt_ii_stat (RTX_CODE code, machine_mode mode,
   rtx rt;
   rt = rtx_alloc_stat (code PASS_MEM_STAT);
 
-  PUT_MODE (rt, mode);
+  PUT_MODE_RAW (rt, mode);
   XINT (rt, 0) = arg0;
   XINT (rt, 1) = arg1;
 
@@ -814,7 +797,7 @@ gen_rtx_fmt_Ee_stat (RTX_CODE code, machine_mode mode,
   rtx rt;
   rt = rtx_alloc_stat (code PASS_MEM_STAT);
 
-  PUT_MODE (rt, mode);
+  PUT_MODE_RAW (rt, mode);
   XVEC (rt, 0) = arg0;
   XEXP (rt, 1) = arg1;
 
@@ -834,7 +817,7 @@ gen_rtx_fmt_sEsE_stat (RTX_CODE code, machine_mode mode,
   rtx rt;
   rt = rtx_alloc_stat (code PASS_MEM_STAT);
 
-  PUT_MODE (rt, mode);
+  PUT_MODE_RAW (rt, mode);
   XSTR (rt, 0) = arg0;
   XVEC (rt, 1) = arg1;
   XSTR (rt, 2) = arg2;
@@ -856,7 +839,7 @@ gen_rtx_fmt_ssss_stat (RTX_CODE code, machine_mode mode,
   rtx rt;
   rt = rtx_alloc_stat (code PASS_MEM_STAT);
 
-  PUT_MODE (rt, mode);
+  PUT_MODE_RAW (rt, mode);
   XSTR (rt, 0) = arg0;
   XSTR (rt, 1) = arg1;
   XSTR (rt, 2) = arg2;
@@ -941,8 +924,6 @@ gen_rtx_fmt_ssss_stat (RTX_CODE code, machine_mode mode,
   gen_rtx_fmt_e (CONST, (MODE), (ARG0))
 #define gen_rtx_raw_PC(MODE) \
   gen_rtx_fmt_ (PC, (MODE))
-#define gen_rtx_raw_REG(MODE, ARG0) \
-  gen_rtx_fmt_i0 (REG, (MODE), (ARG0))
 #define gen_rtx_SCRATCH(MODE) \
   gen_rtx_fmt_ (SCRATCH, (MODE))
 #define gen_rtx_raw_SUBREG(MODE, ARG0, ARG1) \

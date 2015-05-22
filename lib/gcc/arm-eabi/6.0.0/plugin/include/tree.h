@@ -1326,6 +1326,11 @@ extern void protected_set_expr_location (tree, location_t);
 #define OMP_PARALLEL_COMBINED(NODE) \
   (OMP_PARALLEL_CHECK (NODE)->base.private_flag)
 
+/* True on an OMP_TEAMS statement if it represents an explicit
+   combined teams distribute constructs.  */
+#define OMP_TEAMS_COMBINED(NODE) \
+  (OMP_TEAMS_CHECK (NODE)->base.private_flag)
+
 /* True if OMP_ATOMIC* is supposed to be sequentially consistent
    as opposed to relaxed.  */
 #define OMP_ATOMIC_SEQ_CST(NODE) \
@@ -4384,6 +4389,69 @@ extern void assign_assembler_name_if_neeeded (tree);
 extern void warn_deprecated_use (tree, tree);
 extern void cache_integer_cst (tree);
 
+/* Return the memory model from a host integer.  */
+static inline enum memmodel
+memmodel_from_int (unsigned HOST_WIDE_INT val)
+{
+  return (enum memmodel) (val & MEMMODEL_MASK);
+}
+
+/* Return the base memory model from a host integer.  */
+static inline enum memmodel
+memmodel_base (unsigned HOST_WIDE_INT val)
+{
+  return (enum memmodel) (val & MEMMODEL_BASE_MASK);
+}
+
+/* Return TRUE if the memory model is RELAXED.  */
+static inline bool
+is_mm_relaxed (enum memmodel model)
+{
+  return (model & MEMMODEL_BASE_MASK) == MEMMODEL_RELAXED;
+}
+
+/* Return TRUE if the memory model is CONSUME.  */
+static inline bool
+is_mm_consume (enum memmodel model)
+{
+  return (model & MEMMODEL_BASE_MASK) == MEMMODEL_CONSUME;
+}
+
+/* Return TRUE if the memory model is ACQUIRE.  */
+static inline bool
+is_mm_acquire (enum memmodel model)
+{
+  return (model & MEMMODEL_BASE_MASK) == MEMMODEL_ACQUIRE;
+}
+
+/* Return TRUE if the memory model is RELEASE.  */
+static inline bool
+is_mm_release (enum memmodel model)
+{
+  return (model & MEMMODEL_BASE_MASK) == MEMMODEL_RELEASE;
+}
+
+/* Return TRUE if the memory model is ACQ_REL.  */
+static inline bool
+is_mm_acq_rel (enum memmodel model)
+{
+  return (model & MEMMODEL_BASE_MASK) == MEMMODEL_ACQ_REL;
+}
+
+/* Return TRUE if the memory model is SEQ_CST.  */
+static inline bool
+is_mm_seq_cst (enum memmodel model)
+{
+  return (model & MEMMODEL_BASE_MASK) == MEMMODEL_SEQ_CST;
+}
+
+/* Return TRUE if the memory model is a SYNC variant.  */
+static inline bool
+is_mm_sync (enum memmodel model)
+{
+  return (model & MEMMODEL_SYNC);
+}
+
 /* Compare and hash for any structure which begins with a canonical
    pointer.  Assumes all pointers are interchangeable, which is sort
    of already assumed by gcc elsewhere IIRC.  */
@@ -4481,7 +4549,6 @@ extern tree obj_type_ref_class (tree ref);
 extern bool types_same_for_odr (const_tree type1, const_tree type2,
 				bool strict=false);
 extern bool contains_bitfld_component_ref_p (const_tree);
-extern bool type_in_anonymous_namespace_p (const_tree);
 extern bool block_may_fallthru (const_tree);
 extern void using_eh_for_cleanups (void);
 extern bool using_eh_for_cleanups_p (void);
@@ -4502,6 +4569,8 @@ extern int tree_map_base_eq (const void *, const void *);
 extern unsigned int tree_map_base_hash (const void *);
 extern int tree_map_base_marked_p (const void *);
 extern void DEBUG_FUNCTION verify_type (const_tree t);
+extern bool gimple_canonical_types_compatible_p (const_tree, const_tree,
+						 bool trust_type_canonical = true);
 
 #define tree_map_eq tree_map_base_eq
 extern unsigned int tree_map_hash (const void *);
@@ -4621,7 +4690,7 @@ more_call_expr_args_p (const call_expr_arg_iterator *iter)
 
 /* Return true if tree node T is a language-specific node.  */
 static inline bool
-is_lang_specific (tree t)
+is_lang_specific (const_tree t)
 {
   return TREE_CODE (t) == LANG_TYPE || TREE_CODE (t) >= NUM_TREE_CODES;
 }
