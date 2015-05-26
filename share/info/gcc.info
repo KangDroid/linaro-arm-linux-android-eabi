@@ -33587,19 +33587,18 @@ File: gcc.info,  Node: __atomic Builtins,  Next: Integer Overflow Builtins,  Pre
 ================================================================
 
 The following built-in functions approximately match the requirements
-for C++11 concurrency and memory models.  They are all identified by
-being prefixed with '__atomic' and most are overloaded so that they work
-with multiple types.
+for the C++11 memory model.  They are all identified by being prefixed
+with '__atomic' and most are overloaded so that they work with multiple
+types.
 
  These functions are intended to replace the legacy '__sync' builtins.
-The main difference is that the memory model to be used is a parameter
-to the functions.  New code should always use the '__atomic' builtins
-rather than the '__sync' builtins.
+The main difference is that the memory order that is requested is a
+parameter to the functions.  New code should always use the '__atomic'
+builtins rather than the '__sync' builtins.
 
  Note that the '__atomic' builtins assume that programs will conform to
-the C++11 model for concurrency.  In particular, they assume that
-programs are free of data races.  See the C++11 standard for detailed
-definitions.
+the C++11 memory model.  In particular, they assume that programs are
+free of data races.  See the C++11 standard for detailed requirements.
 
  The '__atomic' builtins can be used with any integral scalar or pointer
 type that is 1, 2, 4, or 8 bytes in length.  16-byte integral types are
@@ -33608,193 +33607,198 @@ architecture.
 
  The four non-arithmetic functions (load, store, exchange, and
 compare_exchange) all have a generic version as well.  This generic
-version works on any data type.  If the data type size maps to one of
-the integral sizes that may have lock free support, the generic version
-uses the lock free built-in function.  Otherwise an external call is
-left to be resolved at run time.  This external call is the same format
-with the addition of a 'size_t' parameter inserted as the first
-parameter indicating the size of the object being pointed to.  All
-objects must be the same size.
+version works on any data type.  It uses the lock-free built-in function
+if the specific data type size makes that possible; otherwise, an
+external call is left to be resolved at run time.  This external call is
+the same format with the addition of a 'size_t' parameter inserted as
+the first parameter indicating the size of the object being pointed to.
+All objects must be the same size.
 
- There are 6 different memory models that can be specified.  These map
-to the C++11 memory models with the same names, see the C++11 standard
+ There are 6 different memory orders that can be specified.  These map
+to the C++11 memory orders with the same names, see the C++11 standard
 or the GCC wiki on atomic synchronization
 (http://gcc.gnu.org/wiki/Atomic/GCCMM/AtomicSync) for detailed
 definitions.  Individual targets may also support additional memory
-models for use on specific architectures.  Refer to the target
+orders for use on specific architectures.  Refer to the target
 documentation for details of these.
 
- The memory models integrate both barriers to code motion as well as
-synchronization requirements with other threads.  They are listed here
-in approximately ascending order of strength.
+ An atomic operation can both constrain code motion and be mapped to
+hardware instructions for synchronization between threads (e.g., a
+fence).  To which extent this happens is controlled by the memory
+orders, which are listed here in approximately ascending order of
+strength.  The description of each memory order is only meant to roughly
+illustrate the effects and is not a specification; see the C++11 memory
+model for precise semantics.
 
 '__ATOMIC_RELAXED'
-     No barriers or synchronization.
+     Implies no inter-thread ordering constraints.
 '__ATOMIC_CONSUME'
-     Data dependency only for both barrier and synchronization with
-     another thread.
+     This is currently implemented using the stronger '__ATOMIC_ACQUIRE'
+     memory order because of a deficiency in C++11's semantics for
+     'memory_order_consume'.
 '__ATOMIC_ACQUIRE'
-     Barrier to hoisting of code and synchronizes with release (or
-     stronger) semantic stores from another thread.
+     Creates an inter-thread happens-before constraint from the release
+     (or stronger) semantic store to this acquire load.  Can prevent
+     hoisting of code to before the operation.
 '__ATOMIC_RELEASE'
-     Barrier to sinking of code and synchronizes with acquire (or
-     stronger) semantic loads from another thread.
+     Creates an inter-thread happens-before constraint to acquire (or
+     stronger) semantic loads that read from this release store.  Can
+     prevent sinking of code to after the operation.
 '__ATOMIC_ACQ_REL'
-     Barrier in both directions and synchronizes with acquire loads and
-     release stores in another thread.
+     Combines the effects of both '__ATOMIC_ACQUIRE' and
+     '__ATOMIC_RELEASE'.
 '__ATOMIC_SEQ_CST'
-     Barrier in both directions and synchronizes with acquire loads and
-     release stores in all threads.
+     Enforces total ordering with all other '__ATOMIC_SEQ_CST'
+     operations.
 
- Note that the scope of a C++11 memory model depends on whether or not
-the function being called is a _fence_ (such as
-'__atomic_thread_fence').  In a fence, all memory accesses are subject
-to the restrictions of the memory model.  When the function is an
-operation on a location, the restrictions apply only to those memory
-accesses that could affect or that could depend on the location.
+ Note that in the C++11 memory model, _fences_ (e.g.,
+'__atomic_thread_fence') take effect in combination with other atomic
+operations on specific memory locations (e.g., atomic loads); operations
+on specific memory locations do not necessarily affect other operations
+in the same way.
 
  Target architectures are encouraged to provide their own patterns for
-each of these built-in functions.  If no target is provided, the
+each of the atomic built-in functions.  If no target is provided, the
 original non-memory model set of '__sync' atomic built-in functions are
 used, along with any required synchronization fences surrounding it in
 order to achieve the proper behavior.  Execution in this case is subject
 to the same restrictions as those built-in functions.
 
- If there is no pattern or mechanism to provide a lock free instruction
+ If there is no pattern or mechanism to provide a lock-free instruction
 sequence, a call is made to an external routine with the same parameters
 to be resolved at run time.
 
  When implementing patterns for these built-in functions, the memory
-model parameter can be ignored as long as the pattern implements the
-most restrictive '__ATOMIC_SEQ_CST' model.  Any of the other memory
-models execute correctly with this memory model but they may not execute
-as efficiently as they could with a more appropriate implementation of
-the relaxed requirements.
+order parameter can be ignored as long as the pattern implements the
+most restrictive '__ATOMIC_SEQ_CST' memory order.  Any of the other
+memory orders execute correctly with this memory order but they may not
+execute as efficiently as they could with a more appropriate
+implementation of the relaxed requirements.
 
- Note that the C++11 standard allows for the memory model parameter to
+ Note that the C++11 standard allows for the memory order parameter to
 be determined at run time rather than at compile time.  These built-in
 functions map any run-time value to '__ATOMIC_SEQ_CST' rather than
 invoke a runtime library call or inline a switch statement.  This is
 standard compliant, safe, and the simplest approach for now.
 
- The memory model parameter is a signed int, but only the lower 16 bits
-are reserved for the memory model.  The remainder of the signed int is
+ The memory order parameter is a signed int, but only the lower 16 bits
+are reserved for the memory order.  The remainder of the signed int is
 reserved for target use and should be 0.  Use of the predefined atomic
 values ensures proper usage.
 
- -- Built-in Function: TYPE __atomic_load_n (TYPE *ptr, int memmodel)
+ -- Built-in Function: TYPE __atomic_load_n (TYPE *ptr, int memorder)
      This built-in function implements an atomic load operation.  It
      returns the contents of '*PTR'.
 
-     The valid memory model variants are '__ATOMIC_RELAXED',
+     The valid memory order variants are '__ATOMIC_RELAXED',
      '__ATOMIC_SEQ_CST', '__ATOMIC_ACQUIRE', and '__ATOMIC_CONSUME'.
 
  -- Built-in Function: void __atomic_load (TYPE *ptr, TYPE *ret, int
-          memmodel)
+          memorder)
      This is the generic version of an atomic load.  It returns the
      contents of '*PTR' in '*RET'.
 
  -- Built-in Function: void __atomic_store_n (TYPE *ptr, TYPE val, int
-          memmodel)
+          memorder)
      This built-in function implements an atomic store operation.  It
      writes 'VAL' into '*PTR'.
 
-     The valid memory model variants are '__ATOMIC_RELAXED',
+     The valid memory order variants are '__ATOMIC_RELAXED',
      '__ATOMIC_SEQ_CST', and '__ATOMIC_RELEASE'.
 
  -- Built-in Function: void __atomic_store (TYPE *ptr, TYPE *val, int
-          memmodel)
+          memorder)
      This is the generic version of an atomic store.  It stores the
      value of '*VAL' into '*PTR'.
 
  -- Built-in Function: TYPE __atomic_exchange_n (TYPE *ptr, TYPE val,
-          int memmodel)
+          int memorder)
      This built-in function implements an atomic exchange operation.  It
      writes VAL into '*PTR', and returns the previous contents of
      '*PTR'.
 
-     The valid memory model variants are '__ATOMIC_RELAXED',
+     The valid memory order variants are '__ATOMIC_RELAXED',
      '__ATOMIC_SEQ_CST', '__ATOMIC_ACQUIRE', '__ATOMIC_RELEASE', and
      '__ATOMIC_ACQ_REL'.
 
  -- Built-in Function: void __atomic_exchange (TYPE *ptr, TYPE *val,
-          TYPE *ret, int memmodel)
+          TYPE *ret, int memorder)
      This is the generic version of an atomic exchange.  It stores the
      contents of '*VAL' into '*PTR'.  The original value of '*PTR' is
      copied into '*RET'.
 
  -- Built-in Function: bool __atomic_compare_exchange_n (TYPE *ptr, TYPE
-          *expected, TYPE desired, bool weak, int success_memmodel, int
-          failure_memmodel)
+          *expected, TYPE desired, bool weak, int success_memorder, int
+          failure_memorder)
      This built-in function implements an atomic compare and exchange
      operation.  This compares the contents of '*PTR' with the contents
      of '*EXPECTED'.  If equal, the operation is a _read-modify-write_
-     which writes DESIRED into '*PTR'.  If they are not equal, the
-     operation is a _read_ and the current contents of '*PTR' is written
-     into '*EXPECTED'.  WEAK is true for weak compare_exchange, and
-     false for the strong variation.  Many targets only offer the strong
-     variation and ignore the parameter.  When in doubt, use the strong
-     variation.
+     operation that writes DESIRED into '*PTR'.  If they are not equal,
+     the operation is a _read_ and the current contents of '*PTR' is
+     written into '*EXPECTED'.  WEAK is true for weak compare_exchange,
+     and false for the strong variation.  Many targets only offer the
+     strong variation and ignore the parameter.  When in doubt, use the
+     strong variation.
 
      True is returned if DESIRED is written into '*PTR' and the
-     operation is considered to conform to the memory model specified by
-     SUCCESS_MEMMODEL.  There are no restrictions on what memory model
+     operation is considered to conform to the memory order specified by
+     SUCCESS_MEMORDER.  There are no restrictions on what memory order
      can be used here.
 
      False is returned otherwise, and the operation is considered to
-     conform to FAILURE_MEMMODEL.  This memory model cannot be
+     conform to FAILURE_MEMORDER.  This memory order cannot be
      '__ATOMIC_RELEASE' nor '__ATOMIC_ACQ_REL'.  It also cannot be a
-     stronger model than that specified by SUCCESS_MEMMODEL.
+     stronger order than that specified by SUCCESS_MEMORDER.
 
  -- Built-in Function: bool __atomic_compare_exchange (TYPE *ptr, TYPE
-          *expected, TYPE *desired, bool weak, int success_memmodel, int
-          failure_memmodel)
+          *expected, TYPE *desired, bool weak, int success_memorder, int
+          failure_memorder)
      This built-in function implements the generic version of
      '__atomic_compare_exchange'.  The function is virtually identical
      to '__atomic_compare_exchange_n', except the desired value is also
      a pointer.
 
  -- Built-in Function: TYPE __atomic_add_fetch (TYPE *ptr, TYPE val, int
-          memmodel)
+          memorder)
  -- Built-in Function: TYPE __atomic_sub_fetch (TYPE *ptr, TYPE val, int
-          memmodel)
+          memorder)
  -- Built-in Function: TYPE __atomic_and_fetch (TYPE *ptr, TYPE val, int
-          memmodel)
+          memorder)
  -- Built-in Function: TYPE __atomic_xor_fetch (TYPE *ptr, TYPE val, int
-          memmodel)
+          memorder)
  -- Built-in Function: TYPE __atomic_or_fetch (TYPE *ptr, TYPE val, int
-          memmodel)
+          memorder)
  -- Built-in Function: TYPE __atomic_nand_fetch (TYPE *ptr, TYPE val,
-          int memmodel)
+          int memorder)
      These built-in functions perform the operation suggested by the
      name, and return the result of the operation.  That is,
 
           { *ptr OP= val; return *ptr; }
 
-     All memory models are valid.
+     All memory orders are valid.
 
  -- Built-in Function: TYPE __atomic_fetch_add (TYPE *ptr, TYPE val, int
-          memmodel)
+          memorder)
  -- Built-in Function: TYPE __atomic_fetch_sub (TYPE *ptr, TYPE val, int
-          memmodel)
+          memorder)
  -- Built-in Function: TYPE __atomic_fetch_and (TYPE *ptr, TYPE val, int
-          memmodel)
+          memorder)
  -- Built-in Function: TYPE __atomic_fetch_xor (TYPE *ptr, TYPE val, int
-          memmodel)
+          memorder)
  -- Built-in Function: TYPE __atomic_fetch_or (TYPE *ptr, TYPE val, int
-          memmodel)
+          memorder)
  -- Built-in Function: TYPE __atomic_fetch_nand (TYPE *ptr, TYPE val,
-          int memmodel)
+          int memorder)
      These built-in functions perform the operation suggested by the
      name, and return the value that had previously been in '*PTR'.
      That is,
 
           { tmp = *ptr; *ptr OP= val; return tmp; }
 
-     All memory models are valid.
+     All memory orders are valid.
 
  -- Built-in Function: bool __atomic_test_and_set (void *ptr, int
-          memmodel)
+          memorder)
 
      This built-in function performs an atomic test-and-set operation on
      the byte at '*PTR'.  The byte is set to some implementation defined
@@ -33803,9 +33807,9 @@ values ensures proper usage.
      operands of type 'bool' or 'char'.  For other types only part of
      the value may be set.
 
-     All memory models are valid.
+     All memory orders are valid.
 
- -- Built-in Function: void __atomic_clear (bool *ptr, int memmodel)
+ -- Built-in Function: void __atomic_clear (bool *ptr, int memorder)
 
      This built-in function performs an atomic clear operation on
      '*PTR'.  After the operation, '*PTR' contains 0.  It should be only
@@ -33814,17 +33818,17 @@ values ensures proper usage.
      partially.  If the type is not 'bool' prefer using
      '__atomic_store'.
 
-     The valid memory model variants are '__ATOMIC_RELAXED',
+     The valid memory order variants are '__ATOMIC_RELAXED',
      '__ATOMIC_SEQ_CST', and '__ATOMIC_RELEASE'.
 
- -- Built-in Function: void __atomic_thread_fence (int memmodel)
+ -- Built-in Function: void __atomic_thread_fence (int memorder)
 
      This built-in function acts as a synchronization fence between
-     threads based on the specified memory model.
+     threads based on the specified memory order.
 
      All memory orders are valid.
 
- -- Built-in Function: void __atomic_signal_fence (int memmodel)
+ -- Built-in Function: void __atomic_signal_fence (int memorder)
 
      This built-in function acts as a synchronization fence between a
      thread and signal handlers based in the same thread.
@@ -33835,7 +33839,7 @@ values ensures proper usage.
           *ptr)
 
      This built-in function returns true if objects of SIZE bytes always
-     generate lock free atomic instructions for the target architecture.
+     generate lock-free atomic instructions for the target architecture.
      SIZE must resolve to a compile-time constant and the result also
      resolves to a compile-time constant.
 
@@ -33849,9 +33853,9 @@ values ensures proper usage.
           *ptr)
 
      This built-in function returns true if objects of SIZE bytes always
-     generate lock free atomic instructions for the target architecture.
-     If it is not known to be lock free a call is made to a runtime
-     routine named '__atomic_is_lock_free'.
+     generate lock-free atomic instructions for the target architecture.
+     If the built-in function is not known to be lock-free, a call is
+     made to a runtime routine named '__atomic_is_lock_free'.
 
      PTR is an optional pointer to the object that may be used to
      determine alignment.  A value of 0 indicates typical alignment
@@ -33944,17 +33948,17 @@ File: gcc.info,  Node: x86 specific memory model extensions for transactional me
 
 The x86 architecture supports additional memory ordering flags to mark
 lock critical sections for hardware lock elision.  These must be
-specified in addition to an existing memory model to atomic intrinsics.
+specified in addition to an existing memory order to atomic intrinsics.
 
 '__ATOMIC_HLE_ACQUIRE'
-     Start lock elision on a lock variable.  Memory model must be
+     Start lock elision on a lock variable.  Memory order must be
      '__ATOMIC_ACQUIRE' or stronger.
 '__ATOMIC_HLE_RELEASE'
-     End lock elision on a lock variable.  Memory model must be
+     End lock elision on a lock variable.  Memory order must be
      '__ATOMIC_RELEASE' or stronger.
 
- When a lock acquire fails it is required for good performance to abort
-the transaction quickly.  This can be done with a '_mm_pause'
+ When a lock acquire fails, it is required for good performance to abort
+the transaction quickly.  This can be done with a '_mm_pause'.
 
      #include <immintrin.h> // For _mm_pause
 
@@ -52158,32 +52162,32 @@ Keyword Index
                                                              (line   48)
 * _xtest:                                x86 transactional memory intrinsics.
                                                              (line   53)
-* __atomic_add_fetch:                    __atomic Builtins.  (line  174)
-* __atomic_always_lock_free:             __atomic Builtins.  (line  251)
-* __atomic_and_fetch:                    __atomic Builtins.  (line  178)
-* __atomic_clear:                        __atomic Builtins.  (line  225)
-* __atomic_compare_exchange:             __atomic Builtins.  (line  166)
-* __atomic_compare_exchange_n:           __atomic Builtins.  (line  143)
-* __atomic_exchange:                     __atomic Builtins.  (line  137)
-* __atomic_exchange_n:                   __atomic Builtins.  (line  127)
-* __atomic_fetch_add:                    __atomic Builtins.  (line  193)
-* __atomic_fetch_and:                    __atomic Builtins.  (line  197)
-* __atomic_fetch_nand:                   __atomic Builtins.  (line  203)
-* __atomic_fetch_or:                     __atomic Builtins.  (line  201)
-* __atomic_fetch_sub:                    __atomic Builtins.  (line  195)
-* __atomic_fetch_xor:                    __atomic Builtins.  (line  199)
-* __atomic_is_lock_free:                 __atomic Builtins.  (line  265)
-* __atomic_load:                         __atomic Builtins.  (line  109)
-* __atomic_load_n:                       __atomic Builtins.  (line  102)
-* __atomic_nand_fetch:                   __atomic Builtins.  (line  184)
-* __atomic_or_fetch:                     __atomic Builtins.  (line  182)
-* __atomic_signal_fence:                 __atomic Builtins.  (line  244)
-* __atomic_store:                        __atomic Builtins.  (line  122)
-* __atomic_store_n:                      __atomic Builtins.  (line  114)
-* __atomic_sub_fetch:                    __atomic Builtins.  (line  176)
-* __atomic_test_and_set:                 __atomic Builtins.  (line  213)
-* __atomic_thread_fence:                 __atomic Builtins.  (line  237)
-* __atomic_xor_fetch:                    __atomic Builtins.  (line  180)
+* __atomic_add_fetch:                    __atomic Builtins.  (line  178)
+* __atomic_always_lock_free:             __atomic Builtins.  (line  255)
+* __atomic_and_fetch:                    __atomic Builtins.  (line  182)
+* __atomic_clear:                        __atomic Builtins.  (line  229)
+* __atomic_compare_exchange:             __atomic Builtins.  (line  170)
+* __atomic_compare_exchange_n:           __atomic Builtins.  (line  147)
+* __atomic_exchange:                     __atomic Builtins.  (line  141)
+* __atomic_exchange_n:                   __atomic Builtins.  (line  131)
+* __atomic_fetch_add:                    __atomic Builtins.  (line  197)
+* __atomic_fetch_and:                    __atomic Builtins.  (line  201)
+* __atomic_fetch_nand:                   __atomic Builtins.  (line  207)
+* __atomic_fetch_or:                     __atomic Builtins.  (line  205)
+* __atomic_fetch_sub:                    __atomic Builtins.  (line  199)
+* __atomic_fetch_xor:                    __atomic Builtins.  (line  203)
+* __atomic_is_lock_free:                 __atomic Builtins.  (line  269)
+* __atomic_load:                         __atomic Builtins.  (line  113)
+* __atomic_load_n:                       __atomic Builtins.  (line  106)
+* __atomic_nand_fetch:                   __atomic Builtins.  (line  188)
+* __atomic_or_fetch:                     __atomic Builtins.  (line  186)
+* __atomic_signal_fence:                 __atomic Builtins.  (line  248)
+* __atomic_store:                        __atomic Builtins.  (line  126)
+* __atomic_store_n:                      __atomic Builtins.  (line  118)
+* __atomic_sub_fetch:                    __atomic Builtins.  (line  180)
+* __atomic_test_and_set:                 __atomic Builtins.  (line  217)
+* __atomic_thread_fence:                 __atomic Builtins.  (line  241)
+* __atomic_xor_fetch:                    __atomic Builtins.  (line  184)
 * __builtin_add_overflow:                Integer Overflow Builtins.
                                                              (line    9)
 * __builtin_apply:                       Constructing Calls. (line   29)
@@ -54608,149 +54612,149 @@ Node: Vector Extensions1365936
 Node: Offsetof1373231
 Node: __sync Builtins1374064
 Node: __atomic Builtins1379640
-Node: Integer Overflow Builtins1392165
-Node: x86 specific memory model extensions for transactional memory1396290
-Node: Object Size Checking1397559
-Node: Pointer Bounds Checker builtins1403065
-Node: Cilk Plus Builtins1409071
-Node: Other Builtins1409976
-Node: Target Builtins1439603
-Node: AArch64 Built-in Functions1441095
-Node: Alpha Built-in Functions1441550
-Node: Altera Nios II Built-in Functions1444598
-Node: ARC Built-in Functions1448585
-Node: ARC SIMD Built-in Functions1453797
-Node: ARM iWMMXt Built-in Functions1462693
-Node: ARM C Language Extensions (ACLE)1469689
-Node: ARM Floating Point Status and Control Intrinsics1470966
-Node: AVR Built-in Functions1471442
-Node: Blackfin Built-in Functions1474549
-Node: FR-V Built-in Functions1475168
-Node: Argument Types1476036
-Node: Directly-mapped Integer Functions1477790
-Node: Directly-mapped Media Functions1478874
-Node: Raw read/write Functions1487080
-Node: Other Built-in Functions1487988
-Node: MIPS DSP Built-in Functions1489174
-Node: MIPS Paired-Single Support1501671
-Node: MIPS Loongson Built-in Functions1503170
-Node: Paired-Single Arithmetic1509685
-Node: Paired-Single Built-in Functions1510633
-Node: MIPS-3D Built-in Functions1513300
-Node: Other MIPS Built-in Functions1518678
-Node: MSP430 Built-in Functions1519683
-Node: NDS32 Built-in Functions1521084
-Node: picoChip Built-in Functions1522377
-Node: PowerPC Built-in Functions1523720
-Node: PowerPC AltiVec/VSX Built-in Functions1527428
-Node: PowerPC Hardware Transactional Memory Built-in Functions1667219
-Node: RX Built-in Functions1674192
-Node: S/390 System z Built-in Functions1678225
-Node: SH Built-in Functions1683454
-Node: SPARC VIS Built-in Functions1685182
-Node: SPU Built-in Functions1690785
-Node: TI C6X Built-in Functions1692602
-Node: TILE-Gx Built-in Functions1693627
-Node: TILEPro Built-in Functions1694746
-Node: x86 Built-in Functions1695846
-Node: x86 transactional memory intrinsics1755091
-Node: Target Format Checks1758311
-Node: Solaris Format Checks1758743
-Node: Darwin Format Checks1759169
-Node: Pragmas1759987
-Node: ARM Pragmas1760723
-Node: M32C Pragmas1761326
-Node: MeP Pragmas1762398
-Node: RS/6000 and PowerPC Pragmas1764466
-Node: Darwin Pragmas1765207
-Node: Solaris Pragmas1766274
-Node: Symbol-Renaming Pragmas1767438
-Node: Structure-Packing Pragmas1769055
-Node: Weak Pragmas1770699
-Node: Diagnostic Pragmas1771433
-Node: Visibility Pragmas1774542
-Node: Push/Pop Macro Pragmas1775227
-Node: Function Specific Option Pragmas1776200
-Node: Loop-Specific Pragmas1778048
-Node: Unnamed Fields1779141
-Node: Thread-Local1781338
-Node: C99 Thread-Local Edits1783443
-Node: C++98 Thread-Local Edits1785441
-Node: Binary constants1788886
-Node: C++ Extensions1789557
-Node: C++ Volatiles1791268
-Node: Restricted Pointers1793616
-Node: Vague Linkage1795207
-Node: C++ Interface1798830
-Ref: C++ Interface-Footnote-11802627
-Node: Template Instantiation1802765
-Node: Bound member functions1809350
-Node: C++ Attributes1810882
-Node: Function Multiversioning1815321
-Node: Namespace Association1817138
-Node: Type Traits1818518
-Node: Java Exceptions1825001
-Node: Deprecated Features1826391
-Node: Backwards Compatibility1829358
-Node: Objective-C1830705
-Node: GNU Objective-C runtime API1831312
-Node: Modern GNU Objective-C runtime API1832319
-Node: Traditional GNU Objective-C runtime API1834755
-Node: Executing code before main1835482
-Node: What you can and what you cannot do in +load1838226
-Node: Type encoding1840596
-Node: Legacy type encoding1845623
-Node: @encode1846713
-Node: Method signatures1847258
-Node: Garbage Collection1849250
-Node: Constant string objects1851940
-Node: compatibility_alias1854449
-Node: Exceptions1855174
-Node: Synchronization1857884
-Node: Fast enumeration1859068
-Node: Using fast enumeration1859380
-Node: c99-like fast enumeration syntax1860591
-Node: Fast enumeration details1861294
-Node: Fast enumeration protocol1863634
-Node: Messaging with the GNU Objective-C runtime1866786
-Node: Dynamically registering methods1868158
-Node: Forwarding hook1869849
-Node: Compatibility1872889
-Node: Gcov1879445
-Node: Gcov Intro1879980
-Node: Invoking Gcov1882698
-Node: Gcov and Optimization1896938
-Node: Gcov Data Files1899940
-Node: Cross-profiling1901335
-Node: Gcov-tool1903189
-Node: Gcov-tool Intro1903612
-Node: Invoking Gcov-tool1905582
-Node: Trouble1908161
-Node: Actual Bugs1909578
-Node: Interoperation1910025
-Node: Incompatibilities1916916
-Node: Fixed Headers1925068
-Node: Standard Libraries1926726
-Node: Disappointments1928098
-Node: C++ Misunderstandings1932457
-Node: Static Definitions1933268
-Node: Name lookup1934321
-Ref: Name lookup-Footnote-11939101
-Node: Temporaries1939290
-Node: Copy Assignment1941266
-Node: Non-bugs1943073
-Node: Warnings and Errors1953579
-Node: Bugs1955341
-Node: Bug Criteria1955808
-Node: Bug Reporting1958018
-Node: Service1958239
-Node: Contributing1959058
-Node: Funding1959798
-Node: GNU Project1962288
-Node: Copying1962934
-Node: GNU Free Documentation License2000443
-Node: Contributors2025561
-Node: Option Index2064364
-Node: Keyword Index2288703
+Node: Integer Overflow Builtins1392470
+Node: x86 specific memory model extensions for transactional memory1396595
+Node: Object Size Checking1397866
+Node: Pointer Bounds Checker builtins1403372
+Node: Cilk Plus Builtins1409378
+Node: Other Builtins1410283
+Node: Target Builtins1439910
+Node: AArch64 Built-in Functions1441402
+Node: Alpha Built-in Functions1441857
+Node: Altera Nios II Built-in Functions1444905
+Node: ARC Built-in Functions1448892
+Node: ARC SIMD Built-in Functions1454104
+Node: ARM iWMMXt Built-in Functions1463000
+Node: ARM C Language Extensions (ACLE)1469996
+Node: ARM Floating Point Status and Control Intrinsics1471273
+Node: AVR Built-in Functions1471749
+Node: Blackfin Built-in Functions1474856
+Node: FR-V Built-in Functions1475475
+Node: Argument Types1476343
+Node: Directly-mapped Integer Functions1478097
+Node: Directly-mapped Media Functions1479181
+Node: Raw read/write Functions1487387
+Node: Other Built-in Functions1488295
+Node: MIPS DSP Built-in Functions1489481
+Node: MIPS Paired-Single Support1501978
+Node: MIPS Loongson Built-in Functions1503477
+Node: Paired-Single Arithmetic1509992
+Node: Paired-Single Built-in Functions1510940
+Node: MIPS-3D Built-in Functions1513607
+Node: Other MIPS Built-in Functions1518985
+Node: MSP430 Built-in Functions1519990
+Node: NDS32 Built-in Functions1521391
+Node: picoChip Built-in Functions1522684
+Node: PowerPC Built-in Functions1524027
+Node: PowerPC AltiVec/VSX Built-in Functions1527735
+Node: PowerPC Hardware Transactional Memory Built-in Functions1667526
+Node: RX Built-in Functions1674499
+Node: S/390 System z Built-in Functions1678532
+Node: SH Built-in Functions1683761
+Node: SPARC VIS Built-in Functions1685489
+Node: SPU Built-in Functions1691092
+Node: TI C6X Built-in Functions1692909
+Node: TILE-Gx Built-in Functions1693934
+Node: TILEPro Built-in Functions1695053
+Node: x86 Built-in Functions1696153
+Node: x86 transactional memory intrinsics1755398
+Node: Target Format Checks1758618
+Node: Solaris Format Checks1759050
+Node: Darwin Format Checks1759476
+Node: Pragmas1760294
+Node: ARM Pragmas1761030
+Node: M32C Pragmas1761633
+Node: MeP Pragmas1762705
+Node: RS/6000 and PowerPC Pragmas1764773
+Node: Darwin Pragmas1765514
+Node: Solaris Pragmas1766581
+Node: Symbol-Renaming Pragmas1767745
+Node: Structure-Packing Pragmas1769362
+Node: Weak Pragmas1771006
+Node: Diagnostic Pragmas1771740
+Node: Visibility Pragmas1774849
+Node: Push/Pop Macro Pragmas1775534
+Node: Function Specific Option Pragmas1776507
+Node: Loop-Specific Pragmas1778355
+Node: Unnamed Fields1779448
+Node: Thread-Local1781645
+Node: C99 Thread-Local Edits1783750
+Node: C++98 Thread-Local Edits1785748
+Node: Binary constants1789193
+Node: C++ Extensions1789864
+Node: C++ Volatiles1791575
+Node: Restricted Pointers1793923
+Node: Vague Linkage1795514
+Node: C++ Interface1799137
+Ref: C++ Interface-Footnote-11802934
+Node: Template Instantiation1803072
+Node: Bound member functions1809657
+Node: C++ Attributes1811189
+Node: Function Multiversioning1815628
+Node: Namespace Association1817445
+Node: Type Traits1818825
+Node: Java Exceptions1825308
+Node: Deprecated Features1826698
+Node: Backwards Compatibility1829665
+Node: Objective-C1831012
+Node: GNU Objective-C runtime API1831619
+Node: Modern GNU Objective-C runtime API1832626
+Node: Traditional GNU Objective-C runtime API1835062
+Node: Executing code before main1835789
+Node: What you can and what you cannot do in +load1838533
+Node: Type encoding1840903
+Node: Legacy type encoding1845930
+Node: @encode1847020
+Node: Method signatures1847565
+Node: Garbage Collection1849557
+Node: Constant string objects1852247
+Node: compatibility_alias1854756
+Node: Exceptions1855481
+Node: Synchronization1858191
+Node: Fast enumeration1859375
+Node: Using fast enumeration1859687
+Node: c99-like fast enumeration syntax1860898
+Node: Fast enumeration details1861601
+Node: Fast enumeration protocol1863941
+Node: Messaging with the GNU Objective-C runtime1867093
+Node: Dynamically registering methods1868465
+Node: Forwarding hook1870156
+Node: Compatibility1873196
+Node: Gcov1879752
+Node: Gcov Intro1880287
+Node: Invoking Gcov1883005
+Node: Gcov and Optimization1897245
+Node: Gcov Data Files1900247
+Node: Cross-profiling1901642
+Node: Gcov-tool1903496
+Node: Gcov-tool Intro1903919
+Node: Invoking Gcov-tool1905889
+Node: Trouble1908468
+Node: Actual Bugs1909885
+Node: Interoperation1910332
+Node: Incompatibilities1917223
+Node: Fixed Headers1925375
+Node: Standard Libraries1927033
+Node: Disappointments1928405
+Node: C++ Misunderstandings1932764
+Node: Static Definitions1933575
+Node: Name lookup1934628
+Ref: Name lookup-Footnote-11939408
+Node: Temporaries1939597
+Node: Copy Assignment1941573
+Node: Non-bugs1943380
+Node: Warnings and Errors1953886
+Node: Bugs1955648
+Node: Bug Criteria1956115
+Node: Bug Reporting1958325
+Node: Service1958546
+Node: Contributing1959365
+Node: Funding1960105
+Node: GNU Project1962595
+Node: Copying1963241
+Node: GNU Free Documentation License2000750
+Node: Contributors2025868
+Node: Option Index2064671
+Node: Keyword Index2289010
 
 End Tag Table
