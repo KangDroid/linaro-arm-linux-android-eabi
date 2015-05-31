@@ -133,7 +133,7 @@
 .\" ========================================================================
 .\"
 .IX Title "GCC 1"
-.TH GCC 1 "2015-05-26" "gcc-6.0.0" "GNU"
+.TH GCC 1 "2015-05-31" "gcc-6.0.0" "GNU"
 .\" For nroff, turn off justification.  Always turn off hyphenation; it makes
 .\" way too many mistakes in technical documents.
 .if n .ad l
@@ -11155,6 +11155,9 @@ Produce a position independent executable on targets that support it.
 For predictable results, you must also specify the same set of options
 used for compilation (\fB\-fpie\fR, \fB\-fPIE\fR,
 or model suboptions) when you specify this linker option.
+.IP "\fB\-no\-pie\fR" 4
+.IX Item "-no-pie"
+Don't produce a position independent executable.
 .IP "\fB\-rdynamic\fR" 4
 .IX Item "-rdynamic"
 Pass the flag \fB\-export\-dynamic\fR to the \s-1ELF\s0 linker, on targets

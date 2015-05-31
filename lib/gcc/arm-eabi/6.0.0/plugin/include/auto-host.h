@@ -90,6 +90,12 @@
 #endif
 
 
+/* Define if your target supports default PIE and it is enabled. */
+#ifndef USED_FOR_TARGET
+/* #undef ENABLE_DEFAULT_PIE */
+#endif
+
+
 /* Define if you want more run-time sanity checks for dataflow. */
 #ifndef USED_FOR_TARGET
 /* #undef ENABLE_DF_CHECKING */
@@ -621,7 +627,7 @@
 
 /* Define to 1 if you have the `atoll' function. */
 #ifndef USED_FOR_TARGET
-#define HAVE_ATOLL 1
+/* #undef HAVE_ATOLL */
 #endif
 
 
