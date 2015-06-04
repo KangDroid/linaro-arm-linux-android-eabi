@@ -857,6 +857,10 @@ extern void gt_ggc_mx_niter_desc (void *);
   if (X != NULL) gt_ggc_mx_vec_loop_p_va_gc_ (X);\
   } while (0)
 extern void gt_ggc_mx_vec_loop_p_va_gc_ (void *);
+#define gt_ggc_m_10control_iv(X) do { \
+  if (X != NULL) gt_ggc_mx_control_iv (X);\
+  } while (0)
+extern void gt_ggc_mx_control_iv (void *);
 #define gt_ggc_m_4loop(X) do { \
   if (X != NULL) gt_ggc_mx_loop (X);\
   } while (0)
@@ -1966,6 +1970,10 @@ extern void gt_pch_nx_niter_desc (void *);
   if (X != NULL) gt_pch_nx_vec_loop_p_va_gc_ (X);\
   } while (0)
 extern void gt_pch_nx_vec_loop_p_va_gc_ (void *);
+#define gt_pch_n_10control_iv(X) do { \
+  if (X != NULL) gt_pch_nx_control_iv (X);\
+  } while (0)
+extern void gt_pch_nx_control_iv (void *);
 #define gt_pch_n_4loop(X) do { \
   if (X != NULL) gt_pch_nx_loop (X);\
   } while (0)
@@ -2683,6 +2691,8 @@ extern void gt_pch_p_28hash_table_loop_exit_hasher_
 extern void gt_pch_p_10niter_desc
     (void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_17vec_loop_p_va_gc_
+    (void *, void *, gt_pointer_operator, void *);
+extern void gt_pch_p_10control_iv
     (void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_4loop
     (void *, void *, gt_pointer_operator, void *);

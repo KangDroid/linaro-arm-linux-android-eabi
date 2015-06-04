@@ -625,12 +625,6 @@
 #endif
 
 
-/* Define to 1 if you have the `atoll' function. */
-#ifndef USED_FOR_TARGET
-/* #undef HAVE_ATOLL */
-#endif
-
-
 /* Define to 1 if you have the `atoq' function. */
 #ifndef USED_FOR_TARGET
 /* #undef HAVE_ATOQ */
@@ -687,8 +681,15 @@
 #endif
 
 
-/* Define to 1 if we found a declaration for 'basename', otherwise define to
-   0. */
+/* Define to 1 if we found a declaration for 'atoll', otherwise define to 0.
+   */
+#ifndef USED_FOR_TARGET
+#define HAVE_DECL_ATOLL 1
+#endif
+
+
+/* Define to 1 if you have the declaration of `basename(const char*)', and to
+   0 if you don't. */
 #ifndef USED_FOR_TARGET
 #define HAVE_DECL_BASENAME 1
 #endif
@@ -964,8 +965,8 @@
 #endif
 
 
-/* Define to 1 if we found a declaration for 'strstr', otherwise define to 0.
-   */
+/* Define to 1 if you have the declaration of `strstr(const char*,const
+   char*)', and to 0 if you don't. */
 #ifndef USED_FOR_TARGET
 #define HAVE_DECL_STRSTR 1
 #endif
