@@ -133,7 +133,7 @@
 .\" ========================================================================
 .\"
 .IX Title "GCC 1"
-.TH GCC 1 "2015-06-04" "gcc-6.0.0" "GNU"
+.TH GCC 1 "2015-06-06" "gcc-6.0.0" "GNU"
 .\" For nroff, turn off justification.  Always turn off hyphenation; it makes
 .\" way too many mistakes in technical documents.
 .if n .ad l
@@ -22398,6 +22398,14 @@ This leads to more efficient code by eliminating \s-1PLT\s0 stubs and exposing
 \&\s-1PLT\s0 stubs expect \s-1GOT\s0 pointer in a specific register, this gives more
 register allocation freedom to the compiler.  Lazy binding requires \s-1PLT:\s0
 with \fB\-fno\-plt\fR all external symbols are resolved at load time.
+.Sp
+Alternatively, function attribute \f(CW\*(C`noplt\*(C'\fR can be used to avoid \s-1PLT\s0
+for calls to specific external functions by marking those functions with
+this attribute.
+.Sp
+Additionally, a few targets also convert calls to those functions that are
+marked to not use the \s-1PLT\s0 to use the \s-1GOT\s0 instead for non-position independent
+code.
 .IP "\fB\-fno\-jump\-tables\fR" 4
 .IX Item "-fno-jump-tables"
 Do not use jump tables for switch statements even where it would be

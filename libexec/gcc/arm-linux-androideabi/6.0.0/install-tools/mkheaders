@@ -53,7 +53,7 @@ if [ x$1 != x ] ; then
   prefix=$1
   shift
 else
-  prefix=/home/kangdroid/Desktop/android-toolchain-eabi
+  prefix=/home/kangdroid/External
 fi
 
 # Allow for alternate isysroot in which to find headers

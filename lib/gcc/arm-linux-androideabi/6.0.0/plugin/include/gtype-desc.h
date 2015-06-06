@@ -685,10 +685,6 @@ extern void gt_ggc_mx_dw_ranges_by_label_struct (void *);
   if (X != NULL) gt_ggc_mx_dw_ranges_struct (X);\
   } while (0)
 extern void gt_ggc_mx_dw_ranges_struct (void *);
-#define gt_ggc_m_29vec_deferred_locations_va_gc_(X) do { \
-  if (X != NULL) gt_ggc_mx_vec_deferred_locations_va_gc_ (X);\
-  } while (0)
-extern void gt_ggc_mx_vec_deferred_locations_va_gc_ (void *);
 #define gt_ggc_m_34hash_table_indirect_string_hasher_(X) do { \
   if (X != NULL) gt_ggc_mx_hash_table_indirect_string_hasher_ (X);\
   } while (0)
@@ -1798,10 +1794,6 @@ extern void gt_pch_nx_dw_ranges_by_label_struct (void *);
   if (X != NULL) gt_pch_nx_dw_ranges_struct (X);\
   } while (0)
 extern void gt_pch_nx_dw_ranges_struct (void *);
-#define gt_pch_n_29vec_deferred_locations_va_gc_(X) do { \
-  if (X != NULL) gt_pch_nx_vec_deferred_locations_va_gc_ (X);\
-  } while (0)
-extern void gt_pch_nx_vec_deferred_locations_va_gc_ (void *);
 #define gt_pch_n_34hash_table_indirect_string_hasher_(X) do { \
   if (X != NULL) gt_pch_nx_hash_table_indirect_string_hasher_ (X);\
   } while (0)
@@ -2601,8 +2593,6 @@ extern void gt_pch_p_18comdat_type_struct
 extern void gt_pch_p_25dw_ranges_by_label_struct
     (void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_16dw_ranges_struct
-    (void *, void *, gt_pointer_operator, void *);
-extern void gt_pch_p_29vec_deferred_locations_va_gc_
     (void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_34hash_table_indirect_string_hasher_
     (void *, void *, gt_pointer_operator, void *);

@@ -38,4 +38,4 @@ dlopen=''
 dlpreopen=''
 
 # Directory that this library needs to be installed in:
-libdir='/home/kangdroid/Desktop/android-toolchain-eabi/arm-linux-androideabi/lib/armv7-a'
+libdir='/home/kangdroid/External/arm-linux-androideabi/lib/armv7-a'
