@@ -4834,6 +4834,8 @@ struct GTY(()) cl_optimization
 struct GTY(()) cl_target_option
 {
   int x_target_flags;
+  signed char x_inline_asm_unified;
+  signed char x_arm_restrict_it;
 };
 
 

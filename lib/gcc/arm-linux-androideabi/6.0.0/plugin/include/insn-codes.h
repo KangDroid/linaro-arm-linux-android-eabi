@@ -2543,7 +2543,7 @@ enum insn_code {
   CODE_FOR_muluha3 = 3505,
   CODE_FOR_ssmulha3 = 3506,
   CODE_FOR_usmuluha3 = 3507,
-  LAST_INSN_CODE = 4114
+  LAST_INSN_CODE = 4120
 };
 
 #endif /* GCC_INSN_CODES_H */

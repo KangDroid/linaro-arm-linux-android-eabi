@@ -601,6 +601,18 @@ extern void gt_ggc_mx_hash_table_const_wide_int_hasher_ (void *);
   if (X != NULL) gt_ggc_mx_hash_table_const_int_hasher_ (X);\
   } while (0)
 extern void gt_ggc_mx_hash_table_const_int_hasher_ (void *);
+#define gt_ggc_m_22vec_temp_slot_p_va_gc_(X) do { \
+  if (X != NULL) gt_ggc_mx_vec_temp_slot_p_va_gc_ (X);\
+  } while (0)
+extern void gt_ggc_mx_vec_temp_slot_p_va_gc_ (void *);
+#define gt_ggc_m_20initial_value_struct(X) do { \
+  if (X != NULL) gt_ggc_mx_initial_value_struct (X);\
+  } while (0)
+extern void gt_ggc_mx_initial_value_struct (void *);
+#define gt_ggc_m_9temp_slot(X) do { \
+  if (X != NULL) gt_ggc_mx_temp_slot (X);\
+  } while (0)
+extern void gt_ggc_mx_temp_slot (void *);
 #define gt_ggc_m_23hash_table_addr_hasher_(X) do { \
   if (X != NULL) gt_ggc_mx_hash_table_addr_hasher_ (X);\
   } while (0)
@@ -901,14 +913,6 @@ extern void gt_ggc_mx_eh_status (void *);
   if (X != NULL) gt_ggc_mx_stack_usage (X);\
   } while (0)
 extern void gt_ggc_mx_stack_usage (void *);
-#define gt_ggc_m_22vec_temp_slot_p_va_gc_(X) do { \
-  if (X != NULL) gt_ggc_mx_vec_temp_slot_p_va_gc_ (X);\
-  } while (0)
-extern void gt_ggc_mx_vec_temp_slot_p_va_gc_ (void *);
-#define gt_ggc_m_20initial_value_struct(X) do { \
-  if (X != NULL) gt_ggc_mx_initial_value_struct (X);\
-  } while (0)
-extern void gt_ggc_mx_initial_value_struct (void *);
 #define gt_ggc_m_11frame_space(X) do { \
   if (X != NULL) gt_ggc_mx_frame_space (X);\
   } while (0)
@@ -921,10 +925,6 @@ extern void gt_ggc_mx_rtx_constant_pool (void *);
   if (X != NULL) gt_ggc_mx_dw_fde_node (X);\
   } while (0)
 extern void gt_ggc_mx_dw_fde_node (void *);
-#define gt_ggc_m_9temp_slot(X) do { \
-  if (X != NULL) gt_ggc_mx_temp_slot (X);\
-  } while (0)
-extern void gt_ggc_mx_temp_slot (void *);
 #define gt_ggc_m_9gimple_df(X) do { \
   if (X != NULL) gt_ggc_mx_gimple_df (X);\
   } while (0)
@@ -1085,6 +1085,10 @@ extern void gt_ggc_mx_basic_block_def (void *);
   if (X != NULL) gt_ggc_mx_edge_def (X);\
   } while (0)
 extern void gt_ggc_mx_edge_def (void *);
+#define gt_ggc_m_16cl_target_option(X) do { \
+  if (X != NULL) gt_ggc_mx_cl_target_option (X);\
+  } while (0)
+extern void gt_ggc_mx_cl_target_option (void *);
 #define gt_ggc_m_7section(X) do { \
   if (X != NULL) gt_ggc_mx_section (X);\
   } while (0)
@@ -1710,6 +1714,18 @@ extern void gt_pch_nx_hash_table_const_wide_int_hasher_ (void *);
   if (X != NULL) gt_pch_nx_hash_table_const_int_hasher_ (X);\
   } while (0)
 extern void gt_pch_nx_hash_table_const_int_hasher_ (void *);
+#define gt_pch_n_22vec_temp_slot_p_va_gc_(X) do { \
+  if (X != NULL) gt_pch_nx_vec_temp_slot_p_va_gc_ (X);\
+  } while (0)
+extern void gt_pch_nx_vec_temp_slot_p_va_gc_ (void *);
+#define gt_pch_n_20initial_value_struct(X) do { \
+  if (X != NULL) gt_pch_nx_initial_value_struct (X);\
+  } while (0)
+extern void gt_pch_nx_initial_value_struct (void *);
+#define gt_pch_n_9temp_slot(X) do { \
+  if (X != NULL) gt_pch_nx_temp_slot (X);\
+  } while (0)
+extern void gt_pch_nx_temp_slot (void *);
 #define gt_pch_n_23hash_table_addr_hasher_(X) do { \
   if (X != NULL) gt_pch_nx_hash_table_addr_hasher_ (X);\
   } while (0)
@@ -2010,14 +2026,6 @@ extern void gt_pch_nx_eh_status (void *);
   if (X != NULL) gt_pch_nx_stack_usage (X);\
   } while (0)
 extern void gt_pch_nx_stack_usage (void *);
-#define gt_pch_n_22vec_temp_slot_p_va_gc_(X) do { \
-  if (X != NULL) gt_pch_nx_vec_temp_slot_p_va_gc_ (X);\
-  } while (0)
-extern void gt_pch_nx_vec_temp_slot_p_va_gc_ (void *);
-#define gt_pch_n_20initial_value_struct(X) do { \
-  if (X != NULL) gt_pch_nx_initial_value_struct (X);\
-  } while (0)
-extern void gt_pch_nx_initial_value_struct (void *);
 #define gt_pch_n_11frame_space(X) do { \
   if (X != NULL) gt_pch_nx_frame_space (X);\
   } while (0)
@@ -2030,10 +2038,6 @@ extern void gt_pch_nx_rtx_constant_pool (void *);
   if (X != NULL) gt_pch_nx_dw_fde_node (X);\
   } while (0)
 extern void gt_pch_nx_dw_fde_node (void *);
-#define gt_pch_n_9temp_slot(X) do { \
-  if (X != NULL) gt_pch_nx_temp_slot (X);\
-  } while (0)
-extern void gt_pch_nx_temp_slot (void *);
 #define gt_pch_n_9gimple_df(X) do { \
   if (X != NULL) gt_pch_nx_gimple_df (X);\
   } while (0)
@@ -2194,6 +2198,10 @@ extern void gt_pch_nx_basic_block_def (void *);
   if (X != NULL) gt_pch_nx_edge_def (X);\
   } while (0)
 extern void gt_pch_nx_edge_def (void *);
+#define gt_pch_n_16cl_target_option(X) do { \
+  if (X != NULL) gt_pch_nx_cl_target_option (X);\
+  } while (0)
+extern void gt_pch_nx_cl_target_option (void *);
 #define gt_pch_n_7section(X) do { \
   if (X != NULL) gt_pch_nx_section (X);\
   } while (0)
@@ -2552,6 +2560,12 @@ extern void gt_pch_p_33hash_table_const_wide_int_hasher_
     (void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_28hash_table_const_int_hasher_
     (void *, void *, gt_pointer_operator, void *);
+extern void gt_pch_p_22vec_temp_slot_p_va_gc_
+    (void *, void *, gt_pointer_operator, void *);
+extern void gt_pch_p_20initial_value_struct
+    (void *, void *, gt_pointer_operator, void *);
+extern void gt_pch_p_9temp_slot
+    (void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_23hash_table_addr_hasher_
     (void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_24vec_die_arg_entry_va_gc_
@@ -2706,17 +2720,11 @@ extern void gt_pch_p_9eh_status
     (void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_11stack_usage
     (void *, void *, gt_pointer_operator, void *);
-extern void gt_pch_p_22vec_temp_slot_p_va_gc_
-    (void *, void *, gt_pointer_operator, void *);
-extern void gt_pch_p_20initial_value_struct
-    (void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_11frame_space
     (void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_17rtx_constant_pool
     (void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_11dw_fde_node
-    (void *, void *, gt_pointer_operator, void *);
-extern void gt_pch_p_9temp_slot
     (void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_9gimple_df
     (void *, void *, gt_pointer_operator, void *);
@@ -2797,6 +2805,8 @@ extern void gt_pch_p_16machine_function
 extern void gt_pch_p_15basic_block_def
     (void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_8edge_def
+    (void *, void *, gt_pointer_operator, void *);
+extern void gt_pch_p_16cl_target_option
     (void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_7section
     (void *, void *, gt_pointer_operator, void *);

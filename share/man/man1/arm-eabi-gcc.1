@@ -133,7 +133,7 @@
 .\" ========================================================================
 .\"
 .IX Title "GCC 1"
-.TH GCC 1 "2015-06-06" "gcc-6.0.0" "GNU"
+.TH GCC 1 "2015-06-18" "gcc-6.0.0" "GNU"
 .\" For nroff, turn off justification.  Always turn off hyphenation; it makes
 .\" way too many mistakes in technical documents.
 .if n .ad l
@@ -334,8 +334,8 @@ in the following sections.
 .IX Item "Debugging Options"
 \&\fB\-d\fR\fIletters\fR  \fB\-dumpspecs  \-dumpmachine  \-dumpversion 
 \&\-fsanitize=\fR\fIstyle\fR \fB\-fsanitize\-recover \-fsanitize\-recover=\fR\fIstyle\fR 
-\&\fB\-fasan\-shadow\-offset=\fR\fInumber\fR \fB\-fsanitize\-sections=\fR\fIs1,s2,...\fR 
-\&\fB\-fsanitize\-undefined\-trap\-on\-error 
+\&\fB\-fasan\-shadow\-offset=\fR\fInumber\fR \fB\-fsanitize\-sections=\fR\fIs1\fR\fB,\fR\fIs2\fR\fB,... 
+\&\-fsanitize\-undefined\-trap\-on\-error 
 \&\-fcheck\-pointer\-bounds \-fchkp\-check\-incomplete\-type 
 \&\-fchkp\-first\-field\-has\-own\-bounds \-fchkp\-narrow\-bounds 
 \&\-fchkp\-narrow\-to\-innermost\-array \-fchkp\-optimize 
@@ -1106,7 +1106,7 @@ See \s-1RS/6000\s0 and PowerPC Options.
 \&\-maes \-mpclmul \-mfsgsbase \-mrdrnd \-mf16c \-mfma \-mprefetchwt1 
 \&\-mclflushopt \-mxsavec \-mxsaves 
 \&\-msse4a \-m3dnow \-mpopcnt \-mabm \-mbmi \-mtbm \-mfma4 \-mxop \-mlzcnt 
-\&\-mbmi2 \-mfxsr \-mxsave \-mxsaveopt \-mrtm \-mlwp \-mmpx \-mthreads 
+\&\-mbmi2 \-mfxsr \-mxsave \-mxsaveopt \-mrtm \-mlwp \-mmpx \-mmwaitx \-mthreads 
 \&\-mno\-align\-stringops  \-minline\-all\-stringops 
 \&\-minline\-stringops\-dynamically \-mstringop\-strategy=\fR\fIalg\fR 
 \&\fB\-mmemcpy\-strategy=\fR\fIstrategy\fR \fB\-mmemset\-strategy=\fR\fIstrategy\fR 
@@ -5325,7 +5325,7 @@ together.
 This option forces \s-1GCC\s0 to use custom shadow offset in AddressSanitizer checks.
 It is useful for experimenting with different shadow memory layouts in
 Kernel AddressSanitizer.
-.IP "\fB\-fsanitize\-sections=\fR\fIs1,s2,...\fR" 4
+.IP "\fB\-fsanitize\-sections=\fR\fIs1\fR\fB,\fR\fIs2\fR\fB,...\fR" 4
 .IX Item "-fsanitize-sections=s1,s2,..."
 Sanitize global variables in selected user-defined sections.  \fIsi\fR may
 contain wildcards.
@@ -11570,7 +11570,7 @@ corresponding flag to the linker.
 Specify the name of the target architecture, optionally suffixed by one or
 more feature modifiers.  This option has the form
 \&\fB\-march=\fR\fIarch\fR{\fB+\fR[\fBno\fR]\fIfeature\fR}*, where the
-only permissible value for \fIarch\fR is \fBarmv8\-a\fR.
+permissible values for \fIarch\fR are \fBarmv8\-a\fR or \fBarmv8.1\-a\fR.
 The permissible values for \fIfeature\fR are documented in the sub-section
 below.  Additionally on native AArch64 GNU/Linux systems the value
 \&\fBnative\fR is available.  This option causes the compiler to pick the
@@ -11654,6 +11654,18 @@ Enable floating-point instructions.
 Enable Advanced \s-1SIMD\s0 instructions.  This implies floating-point instructions
 are enabled.  This is the default for all current possible values for options
 \&\fB\-march\fR and \fB\-mcpu=\fR.
+.IP "\fBlse\fR" 4
+.IX Item "lse"
+Enable Large System Extension instructions.
+.IP "\fBpan\fR" 4
+.IX Item "pan"
+Enable Privileged Access Never support.
+.IP "\fBlor\fR" 4
+.IX Item "lor"
+Enable Limited Ordering Regions support.
+.IP "\fBrdma\fR" 4
+.IX Item "rdma"
+Enable ARMv8.1 Advanced \s-1SIMD\s0 instructions.
 .PP
 \fIAdapteva Epiphany Options\fR
 .IX Subsection "Adapteva Epiphany Options"
@@ -12488,6 +12500,9 @@ states.  The default for most configurations is to generate code
 that executes in \s-1ARM\s0 state, but the default can be changed by
 configuring \s-1GCC\s0 with the \fB\-\-with\-mode=\fR\fIstate\fR
 configure option.
+.Sp
+You can also override the \s-1ARM\s0 and Thumb mode for each function
+by using the \f(CW\*(C`target("thumb")\*(C'\fR and \f(CW\*(C`target("arm")\*(C'\fR function attributes or pragmas.
 .IP "\fB\-mtpcs\-frame\fR" 4
 .IX Item "-mtpcs-frame"
 Generate a stack frame that is compliant with the Thumb Procedure Call
@@ -21454,11 +21469,13 @@ preferred alignment to \fB\-mpreferred\-stack\-boundary=2\fR.
 .IX Item "-mtbm"
 .IP "\fB\-mmpx\fR" 4
 .IX Item "-mmpx"
+.IP "\fB\-mmwaitx\fR" 4
+.IX Item "-mmwaitx"
 .PD
 These switches enable the use of instructions in the \s-1MMX, SSE,
 SSE2, SSE3, SSSE3, SSE4.1, AVX, AVX2, AVX512F, AVX512PF, AVX512ER, AVX512CD,
 SHA, AES, PCLMUL, FSGSBASE, RDRND, F16C, FMA, SSE4A, FMA4, XOP, LWP, ABM,
-BMI, BMI2, FXSR, XSAVE, XSAVEOPT, LZCNT, RTM, MPX\s0 or 3DNow!
+BMI, BMI2, FXSR, XSAVE, XSAVEOPT, LZCNT, RTM, MPX, MWAITX\s0 or 3DNow!
 extended instruction sets.  Each has a corresponding \fB\-mno\-\fR option
 to disable use of these instructions.
 .Sp
