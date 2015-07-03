@@ -133,7 +133,7 @@
 .\" ========================================================================
 .\"
 .IX Title "GCC 1"
-.TH GCC 1 "2015-06-18" "gcc-6.0.0" "GNU"
+.TH GCC 1 "2015-07-03" "gcc-6.0.0" "GNU"
 .\" For nroff, turn off justification.  Always turn off hyphenation; it makes
 .\" way too many mistakes in technical documents.
 .if n .ad l
@@ -1117,7 +1117,7 @@ See \s-1RS/6000\s0 and PowerPC Options.
 \&\-mpc32 \-mpc64 \-mpc80 \-mstackrealign 
 \&\-momit\-leaf\-frame\-pointer  \-mno\-red\-zone \-mno\-tls\-direct\-seg\-refs 
 \&\-mcmodel=\fR\fIcode-model\fR \fB\-mabi=\fR\fIname\fR \fB\-maddress\-mode=\fR\fImode\fR 
-\&\fB\-m32 \-m64 \-mx32 \-m16 \-mlarge\-data\-threshold=\fR\fInum\fR 
+\&\fB\-m32 \-m64 \-mx32 \-m16 \-miamcu \-mlarge\-data\-threshold=\fR\fInum\fR 
 \&\fB\-msse2avx \-mfentry \-mrecord\-mcount \-mnop\-mcount \-m8bit\-idiv 
 \&\-mavx256\-split\-unaligned\-load \-mavx256\-split\-unaligned\-store 
 \&\-malign\-data=\fR\fItype\fR \fB\-mstack\-protector\-guard=\fR\fIguard\fR
@@ -3765,7 +3765,8 @@ warning about an omitted enumeration code even if there is a
 \&\f(CW\*(C`default\*(C'\fR label.
 .IP "\fB\-Wswitch\-bool\fR" 4
 .IX Item "-Wswitch-bool"
-Warn whenever a \f(CW\*(C`switch\*(C'\fR statement has an index of boolean type.
+Warn whenever a \f(CW\*(C`switch\*(C'\fR statement has an index of boolean type
+and the case values are outside the range of a boolean type.
 It is possible to suppress this warning by casting the controlling
 expression to a type other than \f(CW\*(C`bool\*(C'\fR.  For example:
 .Sp
@@ -11507,7 +11508,10 @@ Generate big-endian code.  This is the default when \s-1GCC\s0 is configured for
 \&\fBaarch64_be\-*\-*\fR target.
 .IP "\fB\-mgeneral\-regs\-only\fR" 4
 .IX Item "-mgeneral-regs-only"
-Generate code which uses only the general registers.
+Generate code which uses only the general-purpose registers.  This is equivalent
+to feature modifier \fBnofp\fR of \fB\-march\fR or \fB\-mcpu\fR, except
+that \fB\-mgeneral\-regs\-only\fR takes precedence over any conflicting feature
+modifier regardless of sequence.
 .IP "\fB\-mlittle\-endian\fR" 4
 .IX Item "-mlittle-endian"
 Generate little-endian code.  This is the default when \s-1GCC\s0 is configured for an
@@ -11569,24 +11573,26 @@ corresponding flag to the linker.
 .IX Item "-march=name"
 Specify the name of the target architecture, optionally suffixed by one or
 more feature modifiers.  This option has the form
-\&\fB\-march=\fR\fIarch\fR{\fB+\fR[\fBno\fR]\fIfeature\fR}*, where the
-permissible values for \fIarch\fR are \fBarmv8\-a\fR or \fBarmv8.1\-a\fR.
-The permissible values for \fIfeature\fR are documented in the sub-section
-below.  Additionally on native AArch64 GNU/Linux systems the value
+\&\fB\-march=\fR\fIarch\fR{\fB+\fR[\fBno\fR]\fIfeature\fR}*.
+.Sp
+The permissible values for \fIarch\fR are \fBarmv8\-a\fR or
+\&\fBarmv8.1\-a\fR.
+.Sp
+For the permissible values for \fIfeature\fR, see the sub-section on
+\&\fBaarch64\-feature\-modifiers,,\fR\fB\-march\fR \fBand\fR \fB\-mcpu\fR
+\&\fBFeature Modifiers\fR.  Where conflicting feature modifiers are
+specified, the right-most feature is used.
+.Sp
+Additionally on native AArch64 GNU/Linux systems the value
 \&\fBnative\fR is available.  This option causes the compiler to pick the
 architecture of the host system.  If the compiler is unable to recognize the
 architecture of the host system this option has no effect.
 .Sp
-Where conflicting feature modifiers are specified, the right-most feature is
-used.
-.Sp
-\&\s-1GCC\s0 uses this name to determine what kind of instructions it can emit when
-generating assembly code.
-.Sp
-Where \fB\-march\fR is specified without either of \fB\-mtune\fR
-or \fB\-mcpu\fR also being specified, the code is tuned to perform
-well across a range of target processors implementing the target
-architecture.
+\&\s-1GCC\s0 uses \fIname\fR to determine what kind of instructions it can emit
+when generating assembly code.  If \fB\-march\fR is specified
+without either of \fB\-mtune\fR or \fB\-mcpu\fR also being
+specified, the code is tuned to perform well across a range of target
+processors implementing the target architecture.
 .IP "\fB\-mtune=\fR\fIname\fR" 4
 .IX Item "-mtune=name"
 Specify the name of the target processor for which \s-1GCC\s0 should tune the
@@ -11598,12 +11604,11 @@ Additionally, this option can specify that \s-1GCC\s0 should tune the performanc
 of the code for a big.LITTLE system.  Permissible values for this
 option are: \fBcortex\-a57.cortex\-a53\fR, \fBcortex\-a72.cortex\-a53\fR.
 .Sp
-Additionally on native AArch64 GNU/Linux systems the value \fBnative\fR
-is available.
-This option causes the compiler to pick the architecture of and tune the
-performance of the code for the processor of the host system.
-If the compiler is unable to recognize the processor of the host system
-this option has no effect.
+Additionally on native AArch64 GNU/Linux systems the value
+\&\fBnative\fR is available.  This option causes the compiler to pick
+the architecture of and tune the performance of the code for the
+processor of the host system.  If the compiler is unable to recognize
+the processor of the host system this option has no effect.
 .Sp
 Where none of \fB\-mtune=\fR, \fB\-mcpu=\fR or \fB\-march=\fR
 are specified, the code is tuned to perform well across a range
@@ -11612,48 +11617,58 @@ of target processors.
 This option cannot be suffixed by feature modifiers.
 .IP "\fB\-mcpu=\fR\fIname\fR" 4
 .IX Item "-mcpu=name"
-Specify the name of the target processor, optionally suffixed by one or more
-feature modifiers.  This option has the form
-\&\fB\-mcpu=\fR\fIcpu\fR{\fB+\fR[\fBno\fR]\fIfeature\fR}*, where the
-permissible values for \fIcpu\fR are the same as those available for
-\&\fB\-mtune\fR.  Additionally on native AArch64 GNU/Linux systems the
-value \fBnative\fR is available.
-This option causes the compiler to tune the performance of the code for the
-processor of the host system.  If the compiler is unable to recognize the
-processor of the host system this option has no effect.
+Specify the name of the target processor, optionally suffixed by one
+or more feature modifiers.  This option has the form
+\&\fB\-mcpu=\fR\fIcpu\fR{\fB+\fR[\fBno\fR]\fIfeature\fR}*, where
+the permissible values for \fIcpu\fR are the same as those available
+for \fB\-mtune\fR.  The permissible values for \fIfeature\fR are
+documented in the sub-section on
+\&\fBaarch64\-feature\-modifiers,,\fR\fB\-march\fR \fBand\fR \fB\-mcpu\fR
+\&\fBFeature Modifiers\fR.  Where conflicting feature modifiers are
+specified, the right-most feature is used.
 .Sp
-The permissible values for \fIfeature\fR are documented in the sub-section
-below.
+Additionally on native AArch64 GNU/Linux systems the value
+\&\fBnative\fR is available.  This option causes the compiler to tune
+the performance of the code for the processor of the host system.  If
+the compiler is unable to recognize the processor of the host system
+this option has no effect.
 .Sp
-Where conflicting feature modifiers are specified, the right-most feature is
-used.
-.Sp
-\&\s-1GCC\s0 uses this name to determine what kind of instructions it can emit when
+\&\s-1GCC\s0 uses \fIname\fR to determine what kind of instructions it can emit when
 generating assembly code (as if by \fB\-march\fR) and to determine
 the target processor for which to tune for performance (as if
 by \fB\-mtune\fR).  Where this option is used in conjunction
 with \fB\-march\fR or \fB\-mtune\fR, those options take precedence
 over the appropriate part of this option.
+.IP "\fB\-moverride=\fR\fIstring\fR" 4
+.IX Item "-moverride=string"
+Override tuning decisions made by the back-end in response to a
+\&\fB\-mtune=\fR switch.  The syntax, semantics, and accepted values
+for \fIstring\fR in this option are not guaranteed to be consistent
+across releases.
+.Sp
+This option is only intended to be useful when developing \s-1GCC.\s0
 .PP
 \fB\-march\fR and \fB\-mcpu\fR Feature Modifiers
 .IX Subsection "-march and -mcpu Feature Modifiers"
 .PP
-Feature modifiers used with \fB\-march\fR and \fB\-mcpu\fR can be one
-the following:
+Feature modifiers used with \fB\-march\fR and \fB\-mcpu\fR can be any of
+the following and their inverses \fBno\fR\fIfeature\fR:
 .IP "\fBcrc\fR" 4
 .IX Item "crc"
 Enable \s-1CRC\s0 extension.
 .IP "\fBcrypto\fR" 4
 .IX Item "crypto"
-Enable Crypto extension.  This implies Advanced \s-1SIMD\s0 is enabled.
+Enable Crypto extension.  This also enables Advanced \s-1SIMD\s0 and floating-point
+instructions.
 .IP "\fBfp\fR" 4
 .IX Item "fp"
-Enable floating-point instructions.
+Enable floating-point instructions.  This is on by default for all possible
+values for options \fB\-march\fR and \fB\-mcpu\fR.
 .IP "\fBsimd\fR" 4
 .IX Item "simd"
-Enable Advanced \s-1SIMD\s0 instructions.  This implies floating-point instructions
-are enabled.  This is the default for all current possible values for options
-\&\fB\-march\fR and \fB\-mcpu=\fR.
+Enable Advanced \s-1SIMD\s0 instructions.  This also enables floating-point
+instructions.  This is on by default for all possible values for options
+\&\fB\-march\fR and \fB\-mcpu\fR.
 .IP "\fBlse\fR" 4
 .IX Item "lse"
 Enable Large System Extension instructions.
@@ -11665,7 +11680,12 @@ Enable Privileged Access Never support.
 Enable Limited Ordering Regions support.
 .IP "\fBrdma\fR" 4
 .IX Item "rdma"
-Enable ARMv8.1 Advanced \s-1SIMD\s0 instructions.
+Enable ARMv8.1 Advanced \s-1SIMD\s0 instructions.  This implies Advanced \s-1SIMD\s0
+is enabled.
+.PP
+That is, \fBcrypto\fR implies \fBsimd\fR implies \fBfp\fR.
+Conversely, \fBnofp\fR (or equivalently, \fB\-mgeneral\-regs\-only\fR)
+implies \fBnosimd\fR implies \fBnocrypto\fR.
 .PP
 \fIAdapteva Epiphany Options\fR
 .IX Subsection "Adapteva Epiphany Options"
@@ -21168,7 +21188,7 @@ in ordinary \s-1CPU\s0 registers instead.
 .IX Item "-mno-fancy-math-387"
 Some 387 emulators do not support the \f(CW\*(C`sin\*(C'\fR, \f(CW\*(C`cos\*(C'\fR and
 \&\f(CW\*(C`sqrt\*(C'\fR instructions for the 387.  Specify this option to avoid
-generating those instructions.  This option is the default on FreeBSD,
+generating those instructions.  This option is the default on
 OpenBSD and NetBSD.  This option is overridden when \fB\-march\fR
 indicates that the target \s-1CPU\s0 always has an \s-1FPU\s0 and so the
 instruction does not need emulation.  These
@@ -21855,6 +21875,8 @@ on x86\-64 processors in 64\-bit environments.
 .IX Item "-mx32"
 .IP "\fB\-m16\fR" 4
 .IX Item "-m16"
+.IP "\fB\-miamcu\fR" 4
+.IX Item "-miamcu"
 .PD
 Generate code for a 16\-bit, 32\-bit or 64\-bit environment.
 The \fB\-m32\fR option sets \f(CW\*(C`int\*(C'\fR, \f(CW\*(C`long\*(C'\fR, and pointer types
@@ -21873,6 +21895,9 @@ generates code for the x86\-64 architecture.
 The \fB\-m16\fR option is the same as \fB\-m32\fR, except for that
 it outputs the \f(CW\*(C`.code16gcc\*(C'\fR assembly directive at the beginning of
 the assembly output so that the binary can run in 16\-bit mode.
+.Sp
+The \fB\-miamcu\fR option generates code which conforms to Intel \s-1MCU\s0
+psABI.  It requires the \fB\-m32\fR option to be turned on.
 .IP "\fB\-mno\-red\-zone\fR" 4
 .IX Item "-mno-red-zone"
 Do not use a so-called \*(L"red zone\*(R" for x86\-64 code.  The red zone is mandated

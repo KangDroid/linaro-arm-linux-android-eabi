@@ -541,10 +541,10 @@ extern void gt_ggc_mx_string_pool_data (void *);
   if (X != NULL) gt_ggc_mx_hash_table_libfunc_decl_hasher_ (X);\
   } while (0)
 extern void gt_ggc_mx_hash_table_libfunc_decl_hasher_ (void *);
-#define gt_ggc_m_36hash_map_tree_tree_tree_hash_traits_(X) do { \
-  if (X != NULL) gt_ggc_mx_hash_map_tree_tree_tree_hash_traits_ (X);\
+#define gt_ggc_m_24hash_map_tree_hash_tree_(X) do { \
+  if (X != NULL) gt_ggc_mx_hash_map_tree_hash_tree_ (X);\
   } while (0)
-extern void gt_ggc_mx_hash_map_tree_tree_tree_hash_traits_ (void *);
+extern void gt_ggc_mx_hash_map_tree_hash_tree_ (void *);
 #define gt_ggc_m_31hash_table_temp_address_hasher_(X) do { \
   if (X != NULL) gt_ggc_mx_hash_table_temp_address_hasher_ (X);\
   } while (0)
@@ -773,10 +773,10 @@ extern void gt_ggc_mx_vec_alias_set_entry_va_gc_ (void *);
   if (X != NULL) gt_ggc_mx_alias_set_entry_d (X);\
   } while (0)
 extern void gt_ggc_mx_alias_set_entry_d (void *);
-#define gt_ggc_m_34hash_map_int_int_alias_set_traits_(X) do { \
-  if (X != NULL) gt_ggc_mx_hash_map_int_int_alias_set_traits_ (X);\
+#define gt_ggc_m_28hash_map_alias_set_hash_int_(X) do { \
+  if (X != NULL) gt_ggc_mx_hash_map_alias_set_hash_int_ (X);\
   } while (0)
-extern void gt_ggc_mx_hash_map_int_int_alias_set_traits_ (void *);
+extern void gt_ggc_mx_hash_map_alias_set_hash_int_ (void *);
 #define gt_ggc_m_24constant_descriptor_tree(X) do { \
   if (X != NULL) gt_ggc_mx_constant_descriptor_tree (X);\
   } while (0)
@@ -1021,6 +1021,10 @@ extern void gt_ggc_mx_range_info_def (void *);
   if (X != NULL) gt_ggc_mx_ptr_info_def (X);\
   } while (0)
 extern void gt_ggc_mx_ptr_info_def (void *);
+#define gt_ggc_m_15cgraph_rtl_info(X) do { \
+  if (X != NULL) gt_ggc_mx_cgraph_rtl_info (X);\
+  } while (0)
+extern void gt_ggc_mx_cgraph_rtl_info (void *);
 #define gt_ggc_m_10target_rtl(X) do { \
   if (X != NULL) gt_ggc_mx_target_rtl (X);\
   } while (0)
@@ -1085,6 +1089,10 @@ extern void gt_ggc_mx_basic_block_def (void *);
   if (X != NULL) gt_ggc_mx_edge_def (X);\
   } while (0)
 extern void gt_ggc_mx_edge_def (void *);
+#define gt_ggc_m_15cl_optimization(X) do { \
+  if (X != NULL) gt_ggc_mx_cl_optimization (X);\
+  } while (0)
+extern void gt_ggc_mx_cl_optimization (void *);
 #define gt_ggc_m_16cl_target_option(X) do { \
   if (X != NULL) gt_ggc_mx_cl_target_option (X);\
   } while (0)
@@ -1654,10 +1662,10 @@ extern void gt_pch_nx_string_pool_data (void *);
   if (X != NULL) gt_pch_nx_hash_table_libfunc_decl_hasher_ (X);\
   } while (0)
 extern void gt_pch_nx_hash_table_libfunc_decl_hasher_ (void *);
-#define gt_pch_n_36hash_map_tree_tree_tree_hash_traits_(X) do { \
-  if (X != NULL) gt_pch_nx_hash_map_tree_tree_tree_hash_traits_ (X);\
+#define gt_pch_n_24hash_map_tree_hash_tree_(X) do { \
+  if (X != NULL) gt_pch_nx_hash_map_tree_hash_tree_ (X);\
   } while (0)
-extern void gt_pch_nx_hash_map_tree_tree_tree_hash_traits_ (void *);
+extern void gt_pch_nx_hash_map_tree_hash_tree_ (void *);
 #define gt_pch_n_31hash_table_temp_address_hasher_(X) do { \
   if (X != NULL) gt_pch_nx_hash_table_temp_address_hasher_ (X);\
   } while (0)
@@ -1886,10 +1894,10 @@ extern void gt_pch_nx_vec_alias_set_entry_va_gc_ (void *);
   if (X != NULL) gt_pch_nx_alias_set_entry_d (X);\
   } while (0)
 extern void gt_pch_nx_alias_set_entry_d (void *);
-#define gt_pch_n_34hash_map_int_int_alias_set_traits_(X) do { \
-  if (X != NULL) gt_pch_nx_hash_map_int_int_alias_set_traits_ (X);\
+#define gt_pch_n_28hash_map_alias_set_hash_int_(X) do { \
+  if (X != NULL) gt_pch_nx_hash_map_alias_set_hash_int_ (X);\
   } while (0)
-extern void gt_pch_nx_hash_map_int_int_alias_set_traits_ (void *);
+extern void gt_pch_nx_hash_map_alias_set_hash_int_ (void *);
 #define gt_pch_n_24constant_descriptor_tree(X) do { \
   if (X != NULL) gt_pch_nx_constant_descriptor_tree (X);\
   } while (0)
@@ -2134,6 +2142,10 @@ extern void gt_pch_nx_range_info_def (void *);
   if (X != NULL) gt_pch_nx_ptr_info_def (X);\
   } while (0)
 extern void gt_pch_nx_ptr_info_def (void *);
+#define gt_pch_n_15cgraph_rtl_info(X) do { \
+  if (X != NULL) gt_pch_nx_cgraph_rtl_info (X);\
+  } while (0)
+extern void gt_pch_nx_cgraph_rtl_info (void *);
 #define gt_pch_n_10target_rtl(X) do { \
   if (X != NULL) gt_pch_nx_target_rtl (X);\
   } while (0)
@@ -2198,6 +2210,10 @@ extern void gt_pch_nx_basic_block_def (void *);
   if (X != NULL) gt_pch_nx_edge_def (X);\
   } while (0)
 extern void gt_pch_nx_edge_def (void *);
+#define gt_pch_n_15cl_optimization(X) do { \
+  if (X != NULL) gt_pch_nx_cl_optimization (X);\
+  } while (0)
+extern void gt_pch_nx_cl_optimization (void *);
 #define gt_pch_n_16cl_target_option(X) do { \
   if (X != NULL) gt_pch_nx_cl_target_option (X);\
   } while (0)
@@ -2530,7 +2546,7 @@ extern void gt_pch_p_16string_pool_data
     (void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_31hash_table_libfunc_decl_hasher_
     (void *, void *, gt_pointer_operator, void *);
-extern void gt_pch_p_36hash_map_tree_tree_tree_hash_traits_
+extern void gt_pch_p_24hash_map_tree_hash_tree_
     (void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_31hash_table_temp_address_hasher_
     (void *, void *, gt_pointer_operator, void *);
@@ -2646,7 +2662,7 @@ extern void gt_pch_p_26vec_alias_set_entry_va_gc_
     (void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_17alias_set_entry_d
     (void *, void *, gt_pointer_operator, void *);
-extern void gt_pch_p_34hash_map_int_int_alias_set_traits_
+extern void gt_pch_p_28hash_map_alias_set_hash_int_
     (void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_24constant_descriptor_tree
     (void *, void *, gt_pointer_operator, void *);
@@ -2774,6 +2790,8 @@ extern void gt_pch_p_14range_info_def
     (void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_12ptr_info_def
     (void *, void *, gt_pointer_operator, void *);
+extern void gt_pch_p_15cgraph_rtl_info
+    (void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_10target_rtl
     (void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_8function
@@ -2805,6 +2823,8 @@ extern void gt_pch_p_16machine_function
 extern void gt_pch_p_15basic_block_def
     (void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_8edge_def
+    (void *, void *, gt_pointer_operator, void *);
+extern void gt_pch_p_15cl_optimization
     (void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_16cl_target_option
     (void *, void *, gt_pointer_operator, void *);
