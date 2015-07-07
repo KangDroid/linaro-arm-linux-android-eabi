@@ -38922,7 +38922,7 @@ Target makefile fragments can set these Makefile variables.
      encoded in 'MULTILIB_OSDIRNAMES' instead.
 
      More documentation about multiarch can be found at
-     <http://wiki.debian.org/Multiarch>.
+     <https://wiki.debian.org/Multiarch>.
 
 'SPECS'
      Unfortunately, setting 'MULTILIB_EXTRA_OPTS' is not enough, since
@@ -51267,44 +51267,44 @@ Node: Filesystem1698836
 Node: Host Misc1702951
 Node: Fragments1705400
 Node: Target Fragment1706595
-Node: Host Fragment1717223
-Node: Collect21717463
-Node: Header Dirs1720099
-Node: Type Information1721522
-Node: GTY Options1724798
-Node: Inheritance and GTY1736450
-Ref: Inheritance and GTY-Footnote-11738013
-Node: User GC1738283
-Node: GGC Roots1742022
-Node: Files1742735
-Node: Invoking the garbage collector1745442
-Node: Troubleshooting1746947
-Node: Plugins1748022
-Node: Plugins loading1749151
-Node: Plugin API1750021
-Node: Plugins pass1757747
-Node: Plugins GC1759718
-Node: Plugins description1761436
-Node: Plugins attr1761972
-Node: Plugins recording1764246
-Node: Plugins gate1765096
-Node: Plugins tracking1765687
-Node: Plugins building1766275
-Node: LTO1768065
-Node: LTO Overview1768937
-Node: LTO object file layout1774769
-Node: IPA1779399
-Node: WHOPR1788364
-Node: Internal flags1793053
-Node: Match and Simplify1794464
-Node: GIMPLE API1795418
-Node: The Language1798213
-Node: Funding1807056
-Node: GNU Project1809555
-Node: Copying1810204
-Node: GNU Free Documentation License1847716
-Node: Contributors1872837
-Node: Option Index1911643
-Node: Concept Index1912520
+Node: Host Fragment1717224
+Node: Collect21717464
+Node: Header Dirs1720100
+Node: Type Information1721523
+Node: GTY Options1724799
+Node: Inheritance and GTY1736451
+Ref: Inheritance and GTY-Footnote-11738014
+Node: User GC1738284
+Node: GGC Roots1742023
+Node: Files1742736
+Node: Invoking the garbage collector1745443
+Node: Troubleshooting1746948
+Node: Plugins1748023
+Node: Plugins loading1749152
+Node: Plugin API1750022
+Node: Plugins pass1757748
+Node: Plugins GC1759719
+Node: Plugins description1761437
+Node: Plugins attr1761973
+Node: Plugins recording1764247
+Node: Plugins gate1765097
+Node: Plugins tracking1765688
+Node: Plugins building1766276
+Node: LTO1768066
+Node: LTO Overview1768938
+Node: LTO object file layout1774770
+Node: IPA1779400
+Node: WHOPR1788365
+Node: Internal flags1793054
+Node: Match and Simplify1794465
+Node: GIMPLE API1795419
+Node: The Language1798214
+Node: Funding1807057
+Node: GNU Project1809556
+Node: Copying1810205
+Node: GNU Free Documentation License1847717
+Node: Contributors1872838
+Node: Option Index1911644
+Node: Concept Index1912521
 
 End Tag Table
