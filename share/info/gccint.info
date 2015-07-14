@@ -33456,8 +33456,8 @@ ordinarily expect.
      'fold_range_test ()' is optimal.  This macro defaults to true if
      'BRANCH_COST' is greater than or equal to the value 2.
 
- -- Target Hook: bool TARGET_RTX_COSTS (rtx X, int CODE, int OUTER_CODE,
-          int OPNO, int *TOTAL, bool SPEED)
+ -- Target Hook: bool TARGET_RTX_COSTS (rtx X, machine_mode MODE, int
+          OUTER_CODE, int OPNO, int *TOTAL, bool SPEED)
      This target hook describes the relative costs of RTL expressions.
 
      The cost may depend on the precise form of the expression, which is
@@ -33467,8 +33467,8 @@ ordinarily expect.
      (Y) == OUTER_CODE' and such that either (a) 'XEXP (Y, OPNO) == X'
      or (b) 'XVEC (Y, OPNO)' contains X.
 
-     CODE is X's expression code--redundant, since it can be obtained
-     with 'GET_CODE (X)'.
+     MODE is X's machine mode, or for cases like 'const_int' that do not
+     have a mode, the mode in which X is used.
 
      In implementing this hook, you can use the construct 'COSTS_N_INSNS
      (N)' to specify a cost equal to N fast instructions.
@@ -37301,10 +37301,10 @@ Here are several miscellaneous parameters.
      machines.
 
  -- Macro: WORD_REGISTER_OPERATIONS
-     Define this macro if operations between registers with integral
-     mode smaller than a word are always performed on the entire
-     register.  Most RISC machines have this property and most CISC
-     machines do not.
+     Define this macro to 1 if operations between registers with
+     integral mode smaller than a word are always performed on the
+     entire register.  Most RISC machines have this property and most
+     CISC machines do not.
 
  -- Macro: LOAD_EXTEND_OP (MEM_MODE)
      Define this macro to be a C expression indicating when insns that
@@ -37334,8 +37334,8 @@ Here are several miscellaneous parameters.
      that is larger then MEM_MODE but still smaller than 'word_mode'.
 
  -- Macro: SHORT_IMMEDIATES_SIGN_EXTEND
-     Define this macro if loading short immediate values into registers
-     sign extends.
+     Define this macro to 1 if loading short immediate values into
+     registers sign extends.
 
  -- Target Hook: unsigned int TARGET_MIN_DIVISIONS_FOR_RECIP_MUL
           (machine_mode MODE)
@@ -51229,82 +51229,82 @@ Node: Condition Code1421724
 Node: CC0 Condition Codes1424051
 Node: MODE_CC Condition Codes1427297
 Node: Costs1434105
-Node: Scheduling1450983
-Node: Sections1474161
-Node: PIC1489854
-Node: Assembler Format1491913
-Node: File Framework1493051
-Ref: TARGET_HAVE_SWITCHABLE_BSS_SECTIONS1499983
-Node: Data Output1503253
-Node: Uninitialized Data1511199
-Node: Label Output1516210
-Node: Initialization1540821
-Node: Macros for Initialization1546782
-Node: Instruction Output1553501
-Node: Dispatch Tables1564130
-Node: Exception Region Output1568530
-Node: Alignment Output1575549
-Node: Debugging Info1580152
-Node: All Debuggers1580822
-Node: DBX Options1583677
-Node: DBX Hooks1589115
-Node: File Names and DBX1590424
-Node: SDB and DWARF1592536
-Node: VMS Debug1598796
-Node: Floating Point1599383
-Node: Mode Switching1603275
-Node: Target Attributes1607711
-Node: Emulated TLS1616426
-Node: MIPS Coprocessors1619816
-Node: PCH Target1620975
-Node: C++ ABI1622817
-Node: Named Address Spaces1627611
-Node: Misc1632520
-Ref: TARGET_SHIFT_TRUNCATION_MASK1639257
-Node: Host Config1695394
-Node: Host Common1696462
-Node: Filesystem1698836
-Node: Host Misc1702951
-Node: Fragments1705400
-Node: Target Fragment1706595
-Node: Host Fragment1717224
-Node: Collect21717464
-Node: Header Dirs1720100
-Node: Type Information1721523
-Node: GTY Options1724799
-Node: Inheritance and GTY1736451
-Ref: Inheritance and GTY-Footnote-11738014
-Node: User GC1738284
-Node: GGC Roots1742023
-Node: Files1742736
-Node: Invoking the garbage collector1745443
-Node: Troubleshooting1746948
-Node: Plugins1748023
-Node: Plugins loading1749152
-Node: Plugin API1750022
-Node: Plugins pass1757748
-Node: Plugins GC1759719
-Node: Plugins description1761437
-Node: Plugins attr1761973
-Node: Plugins recording1764247
-Node: Plugins gate1765097
-Node: Plugins tracking1765688
-Node: Plugins building1766276
-Node: LTO1768066
-Node: LTO Overview1768938
-Node: LTO object file layout1774770
-Node: IPA1779400
-Node: WHOPR1788365
-Node: Internal flags1793054
-Node: Match and Simplify1794465
-Node: GIMPLE API1795419
-Node: The Language1798214
-Node: Funding1807057
-Node: GNU Project1809556
-Node: Copying1810205
-Node: GNU Free Documentation License1847717
-Node: Contributors1872838
-Node: Option Index1911644
-Node: Concept Index1912521
+Node: Scheduling1451016
+Node: Sections1474194
+Node: PIC1489887
+Node: Assembler Format1491946
+Node: File Framework1493084
+Ref: TARGET_HAVE_SWITCHABLE_BSS_SECTIONS1500016
+Node: Data Output1503286
+Node: Uninitialized Data1511232
+Node: Label Output1516243
+Node: Initialization1540854
+Node: Macros for Initialization1546815
+Node: Instruction Output1553534
+Node: Dispatch Tables1564163
+Node: Exception Region Output1568563
+Node: Alignment Output1575582
+Node: Debugging Info1580185
+Node: All Debuggers1580855
+Node: DBX Options1583710
+Node: DBX Hooks1589148
+Node: File Names and DBX1590457
+Node: SDB and DWARF1592569
+Node: VMS Debug1598829
+Node: Floating Point1599416
+Node: Mode Switching1603308
+Node: Target Attributes1607744
+Node: Emulated TLS1616459
+Node: MIPS Coprocessors1619849
+Node: PCH Target1621008
+Node: C++ ABI1622850
+Node: Named Address Spaces1627644
+Node: Misc1632553
+Ref: TARGET_SHIFT_TRUNCATION_MASK1639300
+Node: Host Config1695437
+Node: Host Common1696505
+Node: Filesystem1698879
+Node: Host Misc1702994
+Node: Fragments1705443
+Node: Target Fragment1706638
+Node: Host Fragment1717267
+Node: Collect21717507
+Node: Header Dirs1720143
+Node: Type Information1721566
+Node: GTY Options1724842
+Node: Inheritance and GTY1736494
+Ref: Inheritance and GTY-Footnote-11738057
+Node: User GC1738327
+Node: GGC Roots1742066
+Node: Files1742779
+Node: Invoking the garbage collector1745486
+Node: Troubleshooting1746991
+Node: Plugins1748066
+Node: Plugins loading1749195
+Node: Plugin API1750065
+Node: Plugins pass1757791
+Node: Plugins GC1759762
+Node: Plugins description1761480
+Node: Plugins attr1762016
+Node: Plugins recording1764290
+Node: Plugins gate1765140
+Node: Plugins tracking1765731
+Node: Plugins building1766319
+Node: LTO1768109
+Node: LTO Overview1768981
+Node: LTO object file layout1774813
+Node: IPA1779443
+Node: WHOPR1788408
+Node: Internal flags1793097
+Node: Match and Simplify1794508
+Node: GIMPLE API1795462
+Node: The Language1798257
+Node: Funding1807100
+Node: GNU Project1809599
+Node: Copying1810248
+Node: GNU Free Documentation License1847760
+Node: Contributors1872881
+Node: Option Index1911687
+Node: Concept Index1912564
 
 End Tag Table

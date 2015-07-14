@@ -215,6 +215,7 @@ along with GCC; see the file COPYING3.  If not see
 	 form if possible.  */
       NEXT_PASS (pass_cse_sincos, 1);
       NEXT_PASS (pass_optimize_bswap, 1);
+      NEXT_PASS (pass_laddress, 1);
       NEXT_PASS (pass_split_crit_edges, 1);
       NEXT_PASS (pass_pre, 1);
       NEXT_PASS (pass_sink_code, 1);
